@@ -1,0 +1,42 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Create Task</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="dismiss()">
+        <ion-icon slot="icon-only" name="close"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <form class="ion-form">    
+    <ion-item lines="full">
+      <ion-label position="floating">Task Name</ion-label>
+      <ion-input type="text" #name required></ion-input>
+    </ion-item> 
+
+    <ion-item lines="full">
+      <ion-label position="floating">Due Date</ion-label>
+      <ion-input type="password" #date required></ion-input>
+    </ion-item>
+
+    <ion-item lines="full">
+      <ion-label position="floating">Priority</ion-label>
+      <ion-input type="password" #priority required></ion-input>
+    </ion-item>
+
+    <ion-row class="button-row">
+      <ion-col> 
+      <ion-button expand="block" type="submit" (click)="createTask(name, date, priority)">Login</ion-button>
+      
+      </ion-col>
+    </ion-row>
+
+    <span class="divider line one-line">+</span>
+
+
+  </form>
+
+</ion-content>

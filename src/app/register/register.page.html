@@ -1,0 +1,29 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Register</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-row>
+    <ion-col size="6" offset="3">
+      <form class="ion-form">    
+        <ion-item lines="full">
+          <ion-label position="floating">Email</ion-label>
+          <ion-input type="text" #email required></ion-input>
+        </ion-item> 
+    
+        <ion-item lines="full">
+          <ion-label position="floating">Password</ion-label>
+          <ion-input type="password" #password required></ion-input>
+        </ion-item>
+    
+        <ion-row class="button-row">
+          <ion-col> 
+          <ion-button expand="block" type="submit" (click)="signUp(email, password)">Login</ion-button>
+        </ion-col>
+      </ion-row>
+      </form>
+    </ion-col>
+  </ion-row>
+</ion-content>

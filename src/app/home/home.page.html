@@ -9,43 +9,8 @@
 
 
   <ion-list>
-    <!-- Sliding item with text options on both sides -->
-    <ion-item-sliding>
-      <ion-item-options side="start">
-        <ion-item-option >Favorite</ion-item-option>
-        <ion-item-option color="danger" >Share</ion-item-option>
-      </ion-item-options>
-  
-      <ion-item>
-        <ion-label>Item Options</ion-label>
-      </ion-item>
-  
-      <ion-item-options side="end">
-        <ion-item-option>Unread</ion-item-option>
-      </ion-item-options>
-    </ion-item-sliding>
-  
-    <!-- Sliding item with expandable options on both sides -->
-    <ion-item-sliding>
-      <ion-item-options side="start">
-        <ion-item-option color="danger" expandable>
-          Delete
-        </ion-item-option>
-      </ion-item-options>
-  
-      <ion-item>
-        <ion-label>Expandable Options</ion-label>
-      </ion-item>
-  
-      <ion-item-options side="end">
-        <ion-item-option color="tertiary" expandable>
-          Archive
-        </ion-item-option>
-      </ion-item-options>
-    </ion-item-sliding>
-  
     <!-- Multi-line sliding item with icon options on both sides -->
-    <ion-item-sliding id="item100">
+    <ion-item-sliding >
       <ion-item href="#">
         <ion-label>
           <h2>HubStruck Notifications</h2>
@@ -72,156 +37,37 @@
         </ion-item-option>
       </ion-item-options>
     </ion-item-sliding>
-  
-    <!-- Sliding item with icon start options on end side -->
-    <ion-item-sliding>
-      <ion-item>
-        <ion-label>
-          Sliding Item, Icons Start
-        </ion-label>
-      </ion-item>
-      <ion-item-options>
-        <ion-item-option color="primary">
-          <ion-icon slot="start" ios="ellipsis-horizontal" md="ellipsis-vertical"></ion-icon>
-          More
-        </ion-item-option>
-        <ion-item-option color="secondary">
-          <ion-icon slot="start" name="archive"></ion-icon>
-          Archive
-        </ion-item-option>
-      </ion-item-options>
-    </ion-item-sliding>
-  
-    <!-- Sliding item with icon end options on end side -->
-    <ion-item-sliding>
-      <ion-item>
-        <ion-label>
-          Sliding Item, Icons End
-        </ion-label>
-      </ion-item>
-      <ion-item-options>
-        <ion-item-option color="primary">
-          <ion-icon slot="end" ios="ellipsis-horizontal" md="ellipsis-vertical"></ion-icon>
-          More
-        </ion-item-option>
-        <ion-item-option color="secondary">
-          <ion-icon slot="end" name="archive"></ion-icon>
-          Archive
-        </ion-item-option>
-      </ion-item-options>
-    </ion-item-sliding>
-  
-    <!-- Sliding item with icon top options on end side -->
-    <ion-item-sliding>
-      <ion-item>
-        <ion-label>
-          Sliding Item, Icons Top
-        </ion-label>
-      </ion-item>
-      <ion-item-options>
-        <ion-item-option color="primary">
-          <ion-icon slot="top" ios="ellipsis-horizontal" md="ellipsis-vertical"></ion-icon>
-          More
-        </ion-item-option>
-        <ion-item-option color="secondary">
-          <ion-icon slot="top" name="archive"></ion-icon>
-          Archive
-        </ion-item-option>
-      </ion-item-options>
-    </ion-item-sliding>
-  
-    <!-- Sliding item with icon bottom options on end side -->
-    <ion-item-sliding>
-      <ion-item>
-        <ion-label>
-          Sliding Item, Icons Bottom
-        </ion-label>
-      </ion-item>
-      <ion-item-options>
-        <ion-item-option color="primary">
-          <ion-icon slot="bottom" ios="ellipsis-horizontal" md="ellipsis-vertical"></ion-icon>
-          More
-        </ion-item-option>
-        <ion-item-option color="secondary">
-          <ion-icon slot="bottom" name="archive"></ion-icon>
-          Archive
-        </ion-item-option>
-      </ion-item-options>
-    </ion-item-sliding>
   </ion-list>
 
-  <mat-accordion class="example-headers-align">
-    <mat-expansion-panel [expanded]="step === 0" (opened)="setStep(0)" hideToggle>
+  <mat-accordion>
+    <mat-expansion-panel hideToggle>
       <mat-expansion-panel-header>
         <mat-panel-title>
-          Personal data
+          This is the expansion title
         </mat-panel-title>
         <mat-panel-description>
-          Type your name and age
+          This is a summary of the content
         </mat-panel-description>
       </mat-expansion-panel-header>
-  
-      <mat-form-field>
-        <mat-label>First name</mat-label>
-        <input matInput>
-      </mat-form-field>
-  
-      <mat-form-field>
-        <mat-label>Age</mat-label>
-        <input matInput type="number" min="1">
-      </mat-form-field>
-      <mat-action-row>
-        <button mat-button color="primary" (click)="nextStep()">Next</button>
-      </mat-action-row>
+      <p>This is the primary content of the panel.</p>
     </mat-expansion-panel>
-  
-    <mat-expansion-panel [expanded]="step === 1" (opened)="setStep(1)" hideToggle>
+    <mat-expansion-panel (opened)="panelOpenState = true"
+                         (closed)="panelOpenState = false">
       <mat-expansion-panel-header>
         <mat-panel-title>
-          Destination
+          Self aware panel
         </mat-panel-title>
         <mat-panel-description>
-          Type the country name
+          Currently I am {{panelOpenState ? 'open' : 'closed'}}
         </mat-panel-description>
       </mat-expansion-panel-header>
-  
-      <mat-form-field>
-        <mat-label>Country</mat-label>
-        <input matInput>
-      </mat-form-field>
-  
-      <mat-action-row>
-        <button mat-button color="warn" (click)="prevStep()">Previous</button>
-        <button mat-button color="primary" (click)="nextStep()">Next</button>
-      </mat-action-row>
+      <p>I'm visible because I am open</p>
     </mat-expansion-panel>
-  
-    <mat-expansion-panel [expanded]="step === 2" (opened)="setStep(2)" hideToggle>
-      <mat-expansion-panel-header>
-        <mat-panel-title>
-          Day of the trip
-        </mat-panel-title>
-        <mat-panel-description>
-          Inform the date you wish to travel
-        </mat-panel-description>
-      </mat-expansion-panel-header>
-  
-      <mat-form-field>
-        <mat-label>Date</mat-label>
-        <input matInput [matDatepicker]="picker" (focus)="picker.open()" readonly>
-      </mat-form-field>
-      <mat-datepicker #picker></mat-datepicker>
-  
-      <mat-action-row>
-        <button mat-button color="warn" (click)="prevStep()">Previous</button>
-        <button mat-button color="primary" (click)="nextStep()">End</button>
-      </mat-action-row>
-    </mat-expansion-panel>
-  
   </mat-accordion>
+  
 
   <ion-fab vertical="bottom" horizontal="end" slot="fixed">
-    <ion-fab-button>
+    <ion-fab-button (click)="presentModal()">
       <!-- Create new task/thing -->
       <ion-icon name="add-outline"></ion-icon>
     </ion-fab-button>

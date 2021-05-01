@@ -20,7 +20,6 @@ import { HomePage } from './home.page';
     IonicModule,
     HomePageRoutingModule,
     MatExpansionModule,
-    MatAccordion,
     MatFormFieldModule,
   ],
   declarations: [HomePage]
