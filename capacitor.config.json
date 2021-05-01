@@ -1,0 +1,13 @@
+{
+  "appId": "io.ionic.starter",
+  "appName": "dispach-todo-io5",
+  "bundledWebRuntime": false,
+  "npmClient": "npm",
+  "webDir": "www",
+  "plugins": {
+    "SplashScreen": {
+      "launchShowDuration": 0
+    }
+  },
+  "cordova": {}
+}

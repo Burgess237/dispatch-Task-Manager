@@ -1,0 +1,7 @@
+{
+  "name": "dispach-todo-io5",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
