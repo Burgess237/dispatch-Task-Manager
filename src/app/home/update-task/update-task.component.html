@@ -1,6 +1,6 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>Create Task</ion-title>
+    <ion-title>Update Task</ion-title>
     <ion-buttons slot="end">
       <ion-button (click)="dismiss()">
         <ion-icon slot="icon-only" name="close"></ion-icon>
@@ -11,7 +11,7 @@
 
 <ion-content>
 
-  <form class="ion-form" [formGroup] = "createdTask" (ngSubmit)="createTask()">    
+  <form class="ion-form" [formGroup] = "currentTask" (ngSubmit)="updateTask()">    
 
     <ion-item lines="full">
       <ion-label position="floating">Task Name</ion-label>
@@ -19,11 +19,11 @@
     </ion-item> 
     <ion-item lines="full">
       <ion-label position="floating">Creation Date</ion-label>
-      <ion-datetime displayFormat="DD MMM YYYY" value="05-02-2021" formControlName="creationDate"></ion-datetime>
+      <ion-datetime displayFormat="DD MMM YYYY" value="05-02-2021"></ion-datetime>
     </ion-item> 
     <ion-item lines="full">
       <ion-label position="floating">Due Date</ion-label>
-      <ion-datetime displayFormat="DD MMM YYYY" value="05-02-2021" formControlName="dueDate"></ion-datetime>
+      <ion-datetime displayFormat="DD MMM YYYY" value="05-02-2021"></ion-datetime>
     </ion-item>
 
     <ion-item lines="full">
@@ -36,11 +36,6 @@
     </ion-item>
 
     <ion-item lines="full">
-      <ion-label position="floating">Extra Info</ion-label>
-      <ion-textarea type="text" formControlName="extraInfo"></ion-textarea>
-    </ion-item>
-
-    <ion-item lines="full">
       <ion-label position="floating">Status</ion-label>
       <ion-select type="text" formControlName="status">
         <ion-select-option value="ToDo">To Do</ion-select-option>
@@ -48,9 +43,14 @@
       </ion-select>
     </ion-item>
 
+    <ion-item lines="full">
+      <ion-label position="floating">Extra Info</ion-label>
+      <ion-textarea type="text" formControlName="extraInfo"></ion-textarea>
+    </ion-item>
+
     <ion-row class="button-row">
       <ion-col> 
-      <ion-button expand="block" type="submit" [disabled] ="!createdTask.valid">Create Task</ion-button>
+      <ion-button expand="block" type="submit" [disabled] ="!currentTask.valid">Update Task</ion-button>
       
       </ion-col>
     </ion-row>

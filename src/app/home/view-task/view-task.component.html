@@ -1,0 +1,33 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>{{task.taskName}}</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="dismiss()">
+        <ion-icon slot="icon-only" name="close"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <ion-list>
+    <ion-item>
+     Due Date: {{task.dueDate}}
+    </ion-item>
+    <ion-item>
+    Created on:  {{task.creationDate}}
+    </ion-item>
+    <ion-item>
+     Priority: {{task.priority}}
+    </ion-item>
+    <ion-item>
+    Extra Info:  {{task.extraInfo}}
+    </ion-item>
+    <ion-item>
+      Status:  {{task.status}}
+    </ion-item>
+  </ion-list>
+  
+
+</ion-content>

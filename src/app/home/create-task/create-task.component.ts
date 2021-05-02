@@ -1,7 +1,10 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { AngularFireDatabase } from '@angular/fire/database';
-import { AngularFirestore } from '@angular/fire/firestore';
+import { AngularFirestore, fromCollectionRef } from '@angular/fire/firestore';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ModalController } from '@ionic/angular';
+import { FirebaseService } from 'src/app/services/firebase.service';
+import { Task } from 'src/app/task';
 
 @Component({
   selector: 'app-create-task',
@@ -9,12 +12,22 @@ import { ModalController } from '@ionic/angular';
   styleUrls: ['./create-task.component.scss'],
 })
 export class CreateTaskComponent implements OnInit {
+  createdTask: any;
 
-  @Input() user: User;
+  constructor(public modalController: ModalController, public firebaseService: FirebaseService) { }
 
-  constructor(public modalController: ModalController, public angularFirestore: AngularFirestore) { }
+  ngOnInit() {
+    this.createdTask = new FormGroup({
+      id: new FormControl(''),
+      taskName: new FormControl('', Validators.required),
+      creationDate: new FormControl('Today', Validators.required),
+      dueDate: new FormControl('', Validators.required),
+      extraInfo: new FormControl(''),
+      priority: new FormControl('', Validators.required),
+      status: new FormControl('', Validators.required)
+    });
 
-  ngOnInit() {}
+  }
 
   dismiss() {
     // using the injected ModalController this page
@@ -24,18 +37,11 @@ export class CreateTaskComponent implements OnInit {
     });
   }
 
-  createTask(name, date, priority ) {
-    console.log(name, date, priority);
-    const task = {
-      taskName: name,
-      taskDate: date,
-      taskPriority: priority
-    };
-    this.angularFirestore.collection('/tasks').add(task).then(res => {
-      console.log(res);
+  createTask() {
+
+    this.firebaseService.createTask(this.createdTask.value).then(res=> {
       this.dismiss();
-    }
-    );
+    });
   }
 
 }

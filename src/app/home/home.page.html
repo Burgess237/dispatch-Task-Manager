@@ -10,60 +10,25 @@
 
   <ion-list>
     <!-- Multi-line sliding item with icon options on both sides -->
-    <ion-item-sliding >
-      <ion-item href="#">
+    <ion-item-sliding *ngFor="let task of tasks">
+      <ion-item href="#" (click) ="viewTaskModel(task)">
         <ion-label>
-          <h2>HubStruck Notifications</h2>
-          <p>A new message in your network</p>
-          <p>Oceanic Next has joined your network</p>
+          <h2>{{task.taskName}}</h2>
+          <p>Priority: {{task.priority}}</p>
         </ion-label>
         <ion-note slot="end">
-          10:45 AM
+          Due: {{task.dueDate}}
         </ion-note>
       </ion-item>
-  
-      <ion-item-options side="start">
-        <ion-item-option>
-          <ion-icon slot="icon-only" name="heart"></ion-icon>
+      <ion-item-options side="end" >
+        <ion-item-option color="tertiary" expandable (click) ="updateTaskModal(task)">
+          Edit
         </ion-item-option>
       </ion-item-options>
-  
-      <ion-item-options side="end">
-        <ion-item-option color="danger">
-          <ion-icon slot="icon-only" name="trash"></ion-icon>
-        </ion-item-option>
-        <ion-item-option>
-          <ion-icon slot="icon-only" name="star"></ion-icon>
-        </ion-item-option>
-      </ion-item-options>
-    </ion-item-sliding>
+      </ion-item-sliding>
   </ion-list>
 
-  <mat-accordion>
-    <mat-expansion-panel hideToggle>
-      <mat-expansion-panel-header>
-        <mat-panel-title>
-          This is the expansion title
-        </mat-panel-title>
-        <mat-panel-description>
-          This is a summary of the content
-        </mat-panel-description>
-      </mat-expansion-panel-header>
-      <p>This is the primary content of the panel.</p>
-    </mat-expansion-panel>
-    <mat-expansion-panel (opened)="panelOpenState = true"
-                         (closed)="panelOpenState = false">
-      <mat-expansion-panel-header>
-        <mat-panel-title>
-          Self aware panel
-        </mat-panel-title>
-        <mat-panel-description>
-          Currently I am {{panelOpenState ? 'open' : 'closed'}}
-        </mat-panel-description>
-      </mat-expansion-panel-header>
-      <p>I'm visible because I am open</p>
-    </mat-expansion-panel>
-  </mat-accordion>
+  
   
 
   <ion-fab vertical="bottom" horizontal="end" slot="fixed">

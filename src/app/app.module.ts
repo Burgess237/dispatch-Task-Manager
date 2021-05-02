@@ -16,10 +16,14 @@ import { AngularFireDatabaseModule } from '@angular/fire/database';
 
 import { environment } from '../environments/environment';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
+import { UpdateTaskComponent } from './home/update-task/update-task.component';
+import { CreateTaskComponent } from './home/create-task/create-task.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import { ViewTaskComponent } from './home/view-task/view-task.component';
 
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent, UpdateTaskComponent, CreateTaskComponent, ViewTaskComponent],
   entryComponents: [],
   imports: [
     BrowserModule,
@@ -30,7 +34,7 @@ import { AngularFirestoreModule } from '@angular/fire/firestore';
     AngularFireAuthModule,
     AngularFireDatabaseModule,
     AngularFirestoreModule,
-
+    ReactiveFormsModule
   ],
   exports: [
 
