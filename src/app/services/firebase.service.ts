@@ -27,4 +27,8 @@ export class FirebaseService {
     return this.firestore.doc('tasks/' + task.id).delete();
   }
 
+  tasksInDueDateOrder() {
+    return this.firestore.collection('tasks', ref => ref.orderBy('dueDate')).snapshotChanges();
+  }
+
 }

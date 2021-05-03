@@ -20,7 +20,7 @@ import { UpdateTaskComponent } from './home/update-task/update-task.component';
 import { CreateTaskComponent } from './home/create-task/create-task.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ViewTaskComponent } from './home/view-task/view-task.component';
-
+import { AngularFireAuthGuard, hasCustomClaim, redirectUnauthorizedTo, redirectLoggedInTo } from '@angular/fire/auth-guard';
 
 @NgModule({
   declarations: [AppComponent, UpdateTaskComponent, CreateTaskComponent, ViewTaskComponent],
@@ -39,7 +39,7 @@ import { ViewTaskComponent } from './home/view-task/view-task.component';
   exports: [
 
   ],
-  providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
+  providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }, AngularFireAuthGuard],
   bootstrap: [AppComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })

@@ -13,14 +13,19 @@ import { Task } from 'src/app/task';
 })
 export class CreateTaskComponent implements OnInit {
   createdTask: any;
+  date = new Date();
+  currentDate: string;
 
-  constructor(public modalController: ModalController, public firebaseService: FirebaseService) { }
+  constructor(public modalController: ModalController, public firebaseService: FirebaseService) {
+    this.currentDate = this.date.getDate() + '-' + this.date.getMonth() + '-' + this.date.getFullYear();
+   }
+
 
   ngOnInit() {
     this.createdTask = new FormGroup({
       id: new FormControl(''),
       taskName: new FormControl('', Validators.required),
-      creationDate: new FormControl('Today', Validators.required),
+      creationDate: new FormControl(this.currentDate, Validators.required),
       dueDate: new FormControl('', Validators.required),
       extraInfo: new FormControl(''),
       priority: new FormControl('', Validators.required),

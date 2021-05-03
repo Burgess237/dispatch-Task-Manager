@@ -9,6 +9,7 @@ import { UpdateTaskComponent } from './update-task/update-task.component';
 import { FirebaseStorage } from '@angular/fire';
 import { ViewTaskComponent } from './view-task/view-task.component';
 import { Observable, of } from 'rxjs';
+import * as firebase from 'firebase';
 
 @Component({
   selector: 'app-home',
@@ -19,18 +20,25 @@ export class HomePage implements OnInit {
 
   tasks: Task[] = [];
   filtered: Task[] = [];
-
+  currentUser;
   constructor(
     private firebaseService: FirebaseService,
     public modalController: ModalController,
     public authService: AuthService,
     public db: AngularFirestore,
-    public toast: ToastController
+    public toast: ToastController,
+    private firebaseAuth: AuthService
      ) { }
 
   ngOnInit() {
     // Fetch tasks from firebase
-    this.firebaseService.getTasks().subscribe((res: any) => {
+    this.fetchTasks();
+    this.currentUser = JSON.parse(localStorage.getItem('user'));
+    console.log(this.currentUser);
+  }
+
+  fetchTasks() {
+    this.firebaseService.tasksInDueDateOrder().subscribe((res: any) => {
       if(res){
         this.tasks = res.map(e=> ({
             id: e.payload.doc.id,
@@ -39,10 +47,34 @@ export class HomePage implements OnInit {
             dueDate: e.payload.doc.data().dueDate,
             priority: e.payload.doc.data().priority,
             extraInfo: e.payload.doc.data().extraInfo,
-            status: e.payload.doc.data().status
+            status: e.payload.doc.data().status,
+            collectFrom: e.payload.doc.data().collectFrom,
+            deliverTo: e.payload.doc.data().deliverTo
           }));
       }
       this.removeComplete();
+    });
+  }
+
+  doRefresh(event) {
+    console.log('Begin async operation');
+
+    this.firebaseService.tasksInDueDateOrder().subscribe((res: any) => {
+      if(res){
+        this.tasks = res.map(e=> ({
+            id: e.payload.doc.id,
+            taskName: e.payload.doc.data().taskName,
+            creationDate: e.payload.doc.data().creationDate,
+            dueDate: e.payload.doc.data().dueDate,
+            priority: e.payload.doc.data().priority,
+            extraInfo: e.payload.doc.data().extraInfo,
+            status: e.payload.doc.data().status,
+            collectFrom: e.payload.doc.data().collectFrom,
+            deliverTo: e.payload.doc.data().deliverTo
+          }));
+      }
+      this.removeComplete();
+      event.target.complete();
     });
   }
 

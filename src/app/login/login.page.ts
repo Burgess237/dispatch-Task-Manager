@@ -19,7 +19,7 @@ export class LoginPage implements OnInit {
     .then((res) => {
       console.log(res);
       if(this.authService.isEmailVerified) {
-        this.router.navigate(['overview']);
+        this.router.navigate(['home']);
       } else {
         window.alert('Email is not verified');
         return false;

@@ -20,12 +20,12 @@
     <ion-item>
       <ion-label>
           <p>Due Date:</p>
-          <h4>{{task.dueDate}}</h4>
+          <h4>{{task.dueDate | date:'dd MMM, YYYY - HH:mm'}}</h4>
         </ion-label>
     <ion-item>
       <ion-label>
           <p>Created on:</p>
-          <h4> {{task.creationDate}}</h4>
+          <h4> {{task.creationDate | date}}</h4>
       </ion-label>
     </ion-item>
     </ion-item>
@@ -35,6 +35,14 @@
         <h2 *ngIf="task.priority==='low'" style="color:#2dd36f">{{task.priority | titlecase}}</h2>
         <h2 *ngIf="task.priority==='medium'" style="color:#ffc409">{{task.priority | titlecase}}</h2>
         <h2 *ngIf="task.priority==='high'" style="color:#eb445a">{{task.priority | titlecase}}</h2>
+      </ion-label>
+    </ion-item>
+    <ion-item>
+      <ion-label>
+        <p>Collect From:</p>
+        <h4>{{task.collectFrom}}</h4>
+        <p>Deliver To:</p> 
+        <h4>{{task.deliverTo}}</h4>
       </ion-label>
     </ion-item>
     <ion-item>
@@ -51,6 +59,15 @@
       </ion-label>
     </ion-item>
   </ion-list>
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <ion-button (click)="markComplete()" expand="block">
+          Mark Complete
+        </ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
   
 
 </ion-content>

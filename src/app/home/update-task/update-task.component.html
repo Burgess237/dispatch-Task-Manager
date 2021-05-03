@@ -15,15 +15,15 @@
 
     <ion-item lines="full">
       <ion-label position="floating">Task Name</ion-label>
-      <ion-input type="text" formControlName="taskName"></ion-input>
+      <ion-input type="text" formControlName="taskName" value="task.taskName"></ion-input>
     </ion-item> 
     <ion-item lines="full">
       <ion-label position="floating">Creation Date</ion-label>
-      <ion-datetime displayFormat="DD MMM YYYY" value="05-02-2021"></ion-datetime>
+      <ion-datetime displayFormat="DD MMM YYYY" [value]="task.creationDate"></ion-datetime>
     </ion-item> 
     <ion-item lines="full">
       <ion-label position="floating">Due Date</ion-label>
-      <ion-datetime displayFormat="DD MMM YYYY" value="05-02-2021"></ion-datetime>
+      <ion-datetime displayFormat="DD MMM YYYY HH:mm" [value]="task.dueDate"></ion-datetime>
     </ion-item>
 
     <ion-item lines="full">
