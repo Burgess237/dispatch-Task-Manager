@@ -36,16 +36,26 @@
     </ion-item>
 
     <ion-item lines="full">
-      <ion-label position="floating">Status</ion-label>
-      <ion-select type="text" formControlName="status">
-        <ion-select-option value="ToDo">To Do</ion-select-option>
-        <ion-select-option value="complete">Complete</ion-select-option>
-      </ion-select>
+      <ion-label position="floating">Collect From</ion-label>
+      <ion-input type="text" formControlName="collectFrom"></ion-input>
+    </ion-item>
+
+    <ion-item lines="full">
+      <ion-label position="floating">Deliver To</ion-label>
+      <ion-input type="text" formControlName="deliverTo"></ion-input>
     </ion-item>
 
     <ion-item lines="full">
       <ion-label position="floating">Extra Info</ion-label>
       <ion-textarea type="text" formControlName="extraInfo"></ion-textarea>
+    </ion-item>
+
+    <ion-item lines="full">
+      <ion-label position="floating">Status</ion-label>
+      <ion-select type="text" formControlName="status">
+        <ion-select-option value="active">Active</ion-select-option>
+        <ion-select-option value="complete">Complete</ion-select-option>
+      </ion-select>
     </ion-item>
 
     <ion-row class="button-row">
@@ -55,7 +65,6 @@
       </ion-col>
     </ion-row>
 
-    <span class="divider line one-line">+</span>
 
 
   </form>

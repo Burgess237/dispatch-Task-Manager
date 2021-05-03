@@ -19,13 +19,15 @@ export class UpdateTaskComponent implements OnInit {
   ngOnInit() {
     console.log(this.task);
     this.currentTask = new FormGroup({
+      id: new FormControl(this.task.id),
       taskName: new FormControl(this.task.taskName + '', Validators.required),
       creationDate: new FormControl(this.task.creationDate, Validators.required),
       dueDate: new FormControl(this.task.dueDate, Validators.required),
       extraInfo: new FormControl(this.task.extraInfo),
       priority: new FormControl(this.task.priority, Validators.required),
       status: new FormControl(this.task.status, Validators.required),
-      id: new FormControl(this.task.id)
+      collectFrom: new FormControl(this.task.collectFrom, Validators.required),
+      deliverTo: new FormControl(this.task.deliverTo, Validators.required)
     });
   }
 

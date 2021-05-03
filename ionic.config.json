@@ -1,7 +1,10 @@
 {
   "name": "dispach-todo-io5",
   "integrations": {
-    "capacitor": {}
+    "capacitor": {
+      "enabled": false
+    },
+    "cordova": {}
   },
   "type": "angular"
 }

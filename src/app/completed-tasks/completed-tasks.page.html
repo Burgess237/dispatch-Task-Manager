@@ -1,0 +1,28 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+
+    <ion-title>completedTasks</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <ion-list>
+    <ion-item *ngFor="let task of completedTasks">
+      <ion-label>
+        {{task.taskName}}
+      </ion-label>
+    </ion-item>
+  </ion-list>
+
+</ion-content>
+
+<ion-footer>
+  <ion-item routerDirection="back" href="/#/home">
+    <ion-label><p>Home</p></ion-label>
+    <ion-icon name="home-outline"></ion-icon>
+  </ion-item>
+</ion-footer>

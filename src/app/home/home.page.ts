@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
-import { ModalController } from '@ionic/angular';
+import { ModalController, ToastController } from '@ionic/angular';
 import { AuthService } from '../services/auth.service';
 import { FirebaseService } from '../services/firebase.service';
 import { CreateTaskComponent } from './create-task/create-task.component';
@@ -8,6 +8,7 @@ import { Task } from '../task';
 import { UpdateTaskComponent } from './update-task/update-task.component';
 import { FirebaseStorage } from '@angular/fire';
 import { ViewTaskComponent } from './view-task/view-task.component';
+import { Observable, of } from 'rxjs';
 
 @Component({
   selector: 'app-home',
@@ -17,14 +18,14 @@ import { ViewTaskComponent } from './view-task/view-task.component';
 export class HomePage implements OnInit {
 
   tasks: Task[] = [];
-
-  panelOpenState = false;
+  filtered: Task[] = [];
 
   constructor(
     private firebaseService: FirebaseService,
     public modalController: ModalController,
     public authService: AuthService,
-    public db: AngularFirestore
+    public db: AngularFirestore,
+    public toast: ToastController
      ) { }
 
   ngOnInit() {
@@ -41,7 +42,18 @@ export class HomePage implements OnInit {
             status: e.payload.doc.data().status
           }));
       }
+      this.removeComplete();
     });
+  }
+
+  removeComplete() {
+    console.log(this.tasks.filter(task => task.status === 'active'));
+  }
+
+  filterTasks(event) {
+  const searchTerm = event.detail.value;
+  this.filtered = this.tasks.filter(task => task.taskName === searchTerm);
+  console.log(this.filtered);
   }
 
   async presentModal() {
@@ -84,6 +96,44 @@ export class HomePage implements OnInit {
       presentingElement: await this.modalController.getTop()
     });
     return await modal.present();
+  }
+
+  editAccount() {
+    console.log(this.authService.userData);
+  }
+
+  markTaskComplete(task) {
+
+    const currentTask = task;
+    currentTask.status='complete';
+
+    this.firebaseService.updateTask(currentTask).then(() => {
+      this.presentCompleteToast(task);
+    });
+  }
+
+  undoCompletedTask(task) {
+    this.firebaseService.updateTask(task).then();
+  }
+
+  // Toast
+  async presentCompleteToast(task) {
+    const toast = await this.toast.create({
+      message: 'Task: ' + task.id + ' marked complete',
+      buttons: [
+        {
+          side: 'end',
+          icon: 'return-up-back-outline',
+          text: 'Undo',
+          handler: () => {
+            this.undoCompletedTask(task);
+          }
+        }
+      ],
+      duration: 2000
+    });
+    await toast.present();
+
   }
 
 }

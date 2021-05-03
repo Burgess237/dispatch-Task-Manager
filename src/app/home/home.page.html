@@ -1,28 +1,43 @@
 <ion-header>
   <ion-toolbar>
     <ion-title>Home</ion-title>
+    <ion-button slot="end" (click) = "editAccount()">
+      <ion-avatar>
+        <img src="https://gravatar.com/avatar/dba6bae8c566f9d4041fb9cd9ada7741?d=identicon&f=y">
+      </ion-avatar>    
+    </ion-button>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  <ion-searchbar animated></ion-searchbar>
-
+  <ion-searchbar animated (ionChange)="filterTasks($event)"></ion-searchbar>
 
   <ion-list>
     <!-- Multi-line sliding item with icon options on both sides -->
     <ion-item-sliding *ngFor="let task of tasks">
-      <ion-item href="#" (click) ="viewTaskModel(task)">
+      <ion-item detail="true" href="#" (click) ="viewTaskModel(task)">
         <ion-label>
           <h2>{{task.taskName}}</h2>
-          <p>Priority: {{task.priority}}</p>
+          <p>{{task.dueDate | date}}</p>
+          <ion-note slot="end" *ngIf="task.priority === 'high'">
+            <ion-icon name="flag-outline" color="danger"></ion-icon>
+          </ion-note>
+          <ion-note slot="end" *ngIf="task.priority === 'medium'">
+            <ion-icon name="flag-outline" color="warning"></ion-icon>
+          </ion-note>
+          <ion-note slot="end" *ngIf="task.priority === 'low'">
+            <ion-icon name="flag-outline" color="success"></ion-icon>
+          </ion-note>
         </ion-label>
-        <ion-note slot="end">
-          Due: {{task.dueDate}}
-        </ion-note>
       </ion-item>
-      <ion-item-options side="end" >
-        <ion-item-option color="tertiary" expandable (click) ="updateTaskModal(task)">
-          Edit
+      <ion-item-options side="end" (ionSwipe)="updateTaskModal(task)">
+        <ion-item-option color="tertiary" expandable (click)="updateTaskModal(task)" >
+          <ion-icon name="create-outline"></ion-icon>
+        </ion-item-option>
+      </ion-item-options>
+      <ion-item-options side="start" (ionSwipe)="markTaskComplete(task)">
+        <ion-item-option color="success" expandable (click)="markTaskComplete(task)">
+          <ion-icon name="checkmark-outline"></ion-icon>
         </ion-item-option>
       </ion-item-options>
       </ion-item-sliding>
@@ -41,7 +56,8 @@
 </ion-content>
 
 <ion-footer>
-  <ion-toolbar>
-    <ion-title>Footer</ion-title>
-  </ion-toolbar>
+        <ion-item routerDirection="forward" routerLink="completed-tasks">
+          <ion-label><p>Completed</p></ion-label>
+          <ion-icon name="checkmark-done-outline"></ion-icon>
+        </ion-item>
 </ion-footer>

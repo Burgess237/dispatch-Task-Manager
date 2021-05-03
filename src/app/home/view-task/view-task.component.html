@@ -1,6 +1,6 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>{{task.taskName}}</ion-title>
+    <ion-title>View Task</ion-title>
     <ion-buttons slot="end">
       <ion-button (click)="dismiss()">
         <ion-icon slot="icon-only" name="close"></ion-icon>
@@ -13,19 +13,42 @@
 
   <ion-list>
     <ion-item>
-     Due Date: {{task.dueDate}}
+      <item-label>
+        {{task.taskName}}
+      </item-label>
     </ion-item>
     <ion-item>
-    Created on:  {{task.creationDate}}
+      <ion-label>
+          <p>Due Date:</p>
+          <h4>{{task.dueDate}}</h4>
+        </ion-label>
+    <ion-item>
+      <ion-label>
+          <p>Created on:</p>
+          <h4> {{task.creationDate}}</h4>
+      </ion-label>
+    </ion-item>
     </ion-item>
     <ion-item>
-     Priority: {{task.priority}}
+      <ion-label>
+        <p>Priority</p>
+        <h2 *ngIf="task.priority==='low'" style="color:#2dd36f">{{task.priority | titlecase}}</h2>
+        <h2 *ngIf="task.priority==='medium'" style="color:#ffc409">{{task.priority | titlecase}}</h2>
+        <h2 *ngIf="task.priority==='high'" style="color:#eb445a">{{task.priority | titlecase}}</h2>
+      </ion-label>
     </ion-item>
     <ion-item>
-    Extra Info:  {{task.extraInfo}}
+      <ion-label>
+        <p>Extra Info:</p>
+        <a target="_blank" href="{{task.extraInfo}}">{{task.extraInfo}}</a>
+      </ion-label>
     </ion-item>
     <ion-item>
-      Status:  {{task.status}}
+      <ion-label>
+        <p>Status:</p>
+        <h2 *ngIf="task.status==='complete'" color="success">{{task.status | titlecase}}</h2>
+        <h2 *ngIf="task.status==='active'" color="warning">{{task.status | titlecase}}</h2>
+      </ion-label>
     </ion-item>
   </ion-list>
   

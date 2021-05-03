@@ -20,11 +20,11 @@ export class FirebaseService {
   }
 
   updateTask(task: Task) {
-    console.log('Updating: ', task.id);
     return this.firestore.doc('tasks/' + task.id).update(task);
   }
 
   deleteTask(task) {
     return this.firestore.doc('tasks/' + task.id).delete();
   }
+
 }
