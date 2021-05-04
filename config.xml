@@ -5,6 +5,14 @@
     <author email="hi@ionicframework.com" href="http://ionicframework.com/">Ionic Framework Team</author>
     <content src="index.html" />
     <access origin="*" />
+    <universal-links>
+        <host name="dispach.page.link" scheme="https" />
+        <host name="dispach-todo.firebaseapp.com" scheme="https">
+            <path url="/__/auth/callback" />
+        </host>
+    </universal-links>
+    <allow-intent href="*.firebaseio.com" />
+    <allow-intent href="auth.firebase.com" />
     <allow-intent href="http://*/*" />
     <allow-intent href="https://*/*" />
     <allow-intent href="tel:*" />

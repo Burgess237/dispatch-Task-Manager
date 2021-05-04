@@ -77,7 +77,8 @@ export class AuthService {
 
   // Auth providers
   authLogin(provider) {
-    if(this.platform.is('mobileweb') || this.platform.is('mobile')) {
+    console.log(this.platform.platforms());
+    if(this.platform.is('mobileweb') || this.platform.is('mobile') || this.platform.is('desktop')) {
       return this.ngFireAuth.auth.signInWithPopup(provider)
       .then((result) => {
          this.ngZone.run(() => {
