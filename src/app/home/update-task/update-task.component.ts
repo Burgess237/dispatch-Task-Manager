@@ -23,11 +23,12 @@ export class UpdateTaskComponent implements OnInit {
       taskName: new FormControl(this.task.taskName + '', Validators.required),
       creationDate: new FormControl(this.task.creationDate, Validators.required),
       dueDate: new FormControl(this.task.dueDate, Validators.required),
-      extraInfo: new FormControl(this.task.extraInfo),
       priority: new FormControl(this.task.priority, Validators.required),
       status: new FormControl(this.task.status, Validators.required),
       collectFrom: new FormControl(this.task.collectFrom, Validators.required),
-      deliverTo: new FormControl(this.task.deliverTo, Validators.required)
+      collectLocation: new FormControl(this.task.collectLocation),
+      deliverTo: new FormControl(this.task.deliverTo, Validators.required),
+      deliverLocation: new FormControl(this.task.deliverLocation)
     });
   }
 

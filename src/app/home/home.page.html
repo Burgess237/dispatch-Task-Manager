@@ -2,7 +2,7 @@
   <ion-toolbar>
     <ion-title>Home</ion-title>
     <ion-item slot="end" >
-      <ion-avatar (click) = "editAccount()">
+      <ion-avatar routerLink="/account" routerDirection="forward">
         <img src="{{currentUser.photoURL}}">
       </ion-avatar>    
     </ion-item>
@@ -60,7 +60,7 @@
 </ion-content>
 
 <ion-footer>
-        <ion-item routerDirection="forward" routerLink="completed-tasks">
+        <ion-item routerDirection="forward" routerLink="/completed-tasks">
           <ion-label><p>Completed</p></ion-label>
           <ion-icon name="checkmark-done-outline"></ion-icon>
         </ion-item>

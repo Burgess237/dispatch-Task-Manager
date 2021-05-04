@@ -10,6 +10,7 @@ import { FirebaseStorage } from '@angular/fire';
 import { ViewTaskComponent } from './view-task/view-task.component';
 import { Observable, of } from 'rxjs';
 import * as firebase from 'firebase';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -27,29 +28,30 @@ export class HomePage implements OnInit {
     public authService: AuthService,
     public db: AngularFirestore,
     public toast: ToastController,
-    private firebaseAuth: AuthService
+    private firebaseAuth: AuthService,
+    private router: Router
      ) { }
 
   ngOnInit() {
     // Fetch tasks from firebase
     this.fetchTasks();
     this.currentUser = JSON.parse(localStorage.getItem('user'));
-    console.log(this.currentUser);
   }
 
   fetchTasks() {
     this.firebaseService.tasksInDueDateOrder().subscribe((res: any) => {
       if(res){
         this.tasks = res.map(e=> ({
-            id: e.payload.doc.id,
-            taskName: e.payload.doc.data().taskName,
-            creationDate: e.payload.doc.data().creationDate,
-            dueDate: e.payload.doc.data().dueDate,
-            priority: e.payload.doc.data().priority,
-            extraInfo: e.payload.doc.data().extraInfo,
-            status: e.payload.doc.data().status,
-            collectFrom: e.payload.doc.data().collectFrom,
-            deliverTo: e.payload.doc.data().deliverTo
+          id: e.payload.doc.id,
+          taskName: e.payload.doc.data().taskName,
+          creationDate: e.payload.doc.data().creationDate,
+          dueDate: e.payload.doc.data().dueDate,
+          priority: e.payload.doc.data().priority,
+          status: e.payload.doc.data().status,
+          collectFrom: e.payload.doc.data().collectFrom,
+          deliverTo: e.payload.doc.data().deliverTo,
+          collectLocation: e.payload.doc.data().collectLocation,
+          deliverLocation: e.payload.doc.data().deliverLocation
           }));
       }
       this.removeComplete();
@@ -67,10 +69,11 @@ export class HomePage implements OnInit {
             creationDate: e.payload.doc.data().creationDate,
             dueDate: e.payload.doc.data().dueDate,
             priority: e.payload.doc.data().priority,
-            extraInfo: e.payload.doc.data().extraInfo,
             status: e.payload.doc.data().status,
             collectFrom: e.payload.doc.data().collectFrom,
-            deliverTo: e.payload.doc.data().deliverTo
+            deliverTo: e.payload.doc.data().deliverTo,
+            collectLocation: e.payload.doc.data().collectLocation,
+            deliverLocation: e.payload.doc.data().deliverLocation
           }));
       }
       this.removeComplete();
@@ -79,7 +82,7 @@ export class HomePage implements OnInit {
   }
 
   removeComplete() {
-    console.log(this.tasks.filter(task => task.status === 'active'));
+    this.tasks = this.tasks.filter(task => task.status !== 'complete');
   }
 
   filterTasks(event) {
@@ -128,10 +131,6 @@ export class HomePage implements OnInit {
       presentingElement: await this.modalController.getTop()
     });
     return await modal.present();
-  }
-
-  editAccount() {
-    console.log(this.authService.userData);
   }
 
   markTaskComplete(task) {

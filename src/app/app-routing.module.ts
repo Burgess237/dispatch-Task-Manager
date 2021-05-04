@@ -12,7 +12,11 @@ const routes: Routes = [
   { path: 'login',           loadChildren: () => import('./login/login.module').then( m => m.LoginPageModule) },
   { path: 'register',        loadChildren: () => import('./register/register.module').then( m => m.RegisterPageModule) },
     // eslint-disable-next-line max-len
-  { path: 'completed-tasks', loadChildren: () => import('./completed-tasks/completed-tasks.module').then( m => m.CompletedTasksPageModule), canActivate: [AngularFireAuthGuard], data: { authGuardPipe: redirectUnauthorizedToLogin } }
+  { path: 'completed-tasks', loadChildren: () => import('./completed-tasks/completed-tasks.module').then( m => m.CompletedTasksPageModule), canActivate: [AngularFireAuthGuard], data: { authGuardPipe: redirectUnauthorizedToLogin } },  {
+    path: 'account',
+    loadChildren: () => import('./account/account.module').then( m => m.AccountPageModule)
+  }
+
 ];
 @NgModule({
   imports: [

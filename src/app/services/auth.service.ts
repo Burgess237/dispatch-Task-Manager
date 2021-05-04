@@ -4,6 +4,7 @@ import { auth } from 'firebase/app';
 import { Router } from '@angular/router';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/firestore';
+import { Platform } from '@ionic/angular';
 
 
 
@@ -18,7 +19,8 @@ export class AuthService {
     public afStore: AngularFirestore,
     public ngFireAuth: AngularFireAuth,
     public router: Router,
-    public ngZone: NgZone
+    public ngZone: NgZone,
+    public platform: Platform
 	){
     this.ngFireAuth.authState.subscribe(user => {
       if (user) {
@@ -70,20 +72,30 @@ export class AuthService {
 
   // Sign in with Gmail
   googleAuth() {
-    return this.authLogin(new auth.GoogleAuthProvider());
+      return this.authLogin(new auth.GoogleAuthProvider());
   }
 
   // Auth providers
   authLogin(provider) {
-    return this.ngFireAuth.auth.signInWithPopup(provider)
-    .then((result) => {
-       this.ngZone.run(() => {
-          this.router.navigate(['home']);
+    if(this.platform.is('mobileweb') || this.platform.is('mobile')) {
+      return this.ngFireAuth.auth.signInWithPopup(provider)
+      .then((result) => {
+         this.ngZone.run(() => {
+            this.router.navigate(['home']);
+          });
+        this.setUserData(result.user);
+      }).catch((error) => {
+        window.alert(error);
+      });
+    } else {
+      return this.ngFireAuth.auth.signInWithRedirect(provider)
+        .then((result: any) => {
+          this.ngZone.run(() => {
+            this.router.navigate(['home']);
+          });
+          this.setUserData(result.user);
         });
-      this.setUserData(result.user);
-    }).catch((error) => {
-      window.alert(error);
-    });
+    }
   }
 
   // Store user in localStorage

@@ -27,11 +27,12 @@ export class CreateTaskComponent implements OnInit {
       taskName: new FormControl('', Validators.required),
       creationDate: new FormControl(this.currentDate, Validators.required),
       dueDate: new FormControl('', Validators.required),
-      extraInfo: new FormControl(''),
       priority: new FormControl('', Validators.required),
       status: new FormControl('', Validators.required),
       collectFrom: new FormControl('', Validators.required),
-      deliverTo: new FormControl('', Validators.required)
+      collectLocation: new FormControl(''),
+      deliverTo: new FormControl('', Validators.required),
+      deliverLocation: new FormControl('')
     });
 
   }
