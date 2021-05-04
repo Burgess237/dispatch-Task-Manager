@@ -6,7 +6,7 @@ import { AngularFireAuthGuard, redirectUnauthorizedTo } from '@angular/fire/auth
 const redirectUnauthorizedToLogin = () => redirectUnauthorizedTo(['login']);
 
 const routes: Routes = [
-  { path: '', redirectTo: 'login', pathMatch: 'full' },
+  { path: '', redirectTo: 'home', pathMatch: 'full' },
   // eslint-disable-next-line max-len
   { path: 'home',            loadChildren: () => import('./home/home.module').then(m => m.HomePageModule),                                  canActivate: [AngularFireAuthGuard], data: { authGuardPipe: redirectUnauthorizedToLogin } },
   { path: 'login',           loadChildren: () => import('./login/login.module').then( m => m.LoginPageModule) },

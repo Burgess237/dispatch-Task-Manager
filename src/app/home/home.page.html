@@ -19,7 +19,7 @@
   <ion-list>
     <!-- Multi-line sliding item with icon options on both sides -->
     <ion-item-sliding *ngFor="let task of tasks">
-        <ion-item detail="true" href="#" (click) ="viewTaskModel(task)">
+        <ion-item detail="true" (click)="viewTaskModel(task)">
           <ion-label>
             <h2>{{task.taskName}}</h2>
             <p>Due: {{task.dueDate | date}}</p>

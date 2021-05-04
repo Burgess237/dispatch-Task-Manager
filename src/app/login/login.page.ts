@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { Platform } from '@ionic/angular';
 import { AuthService } from '../services/auth.service';
 
 @Component({
@@ -9,12 +10,13 @@ import { AuthService } from '../services/auth.service';
 })
 export class LoginPage implements OnInit {
 
-  constructor(public authService: AuthService, public router: Router) { }
+  constructor(public authService: AuthService, public router: Router, private platform: Platform) { }
 
   ngOnInit() {
   }
 
   logIn(email, password) {
+    console.log(this.platform);
     this.authService.signIn(email.value, password.value)
     .then((res) => {
       console.log(res);

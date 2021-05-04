@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "658186270351",
+    "firebase_url": "https://dispach-todo-default-rtdb.europe-west1.firebasedatabase.app",
+    "project_id": "dispach-todo",
+    "storage_bucket": "dispach-todo.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:658186270351:android:7b65cfdea10b79eec222fa",
+        "android_client_info": {
+          "package_name": "io.ionic.dispach.todo"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "658186270351-tcr55hr9hln3n382amrncc3nin9qglop.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDdvqrPFlMJbCeD68EK11RiuSQCvvve6Hk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "658186270351-tcr55hr9hln3n382amrncc3nin9qglop.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
