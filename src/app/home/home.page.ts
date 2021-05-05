@@ -59,8 +59,6 @@ export class HomePage implements OnInit {
   }
 
   doRefresh(event) {
-    console.log('Begin async operation');
-
     this.firebaseService.tasksInDueDateOrder().subscribe((res: any) => {
       if(res){
         this.tasks = res.map(e=> ({
@@ -88,7 +86,6 @@ export class HomePage implements OnInit {
   filterTasks(event) {
   const searchTerm = event.detail.value;
   this.filtered = this.tasks.filter(task => task.taskName === searchTerm);
-  console.log(this.filtered);
   }
 
   async presentModal() {
@@ -106,7 +103,6 @@ export class HomePage implements OnInit {
   }
 
   async updateTaskModal(currentTask) {
-    console.log(currentTask);
     const modal = await this.modalController.create({
       component: UpdateTaskComponent,
       cssClass: 'update-task-modal',
@@ -120,7 +116,6 @@ export class HomePage implements OnInit {
   }
 
   async viewTaskModel(currentTask) {
-    console.log(currentTask);
     const modal = await this.modalController.create({
       component: ViewTaskComponent,
       cssClass: 'view-task-modal',
@@ -150,7 +145,7 @@ export class HomePage implements OnInit {
   // Toast
   async presentCompleteToast(task) {
     const toast = await this.toast.create({
-      message: 'Task: ' + task.id + ' marked complete',
+      message: 'Task marked complete',
       buttons: [
         {
           side: 'end',

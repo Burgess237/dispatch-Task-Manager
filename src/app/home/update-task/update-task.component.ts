@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { ModalController } from '@ionic/angular';
+import { ModalController, ToastController } from '@ionic/angular';
 import { FirebaseService } from 'src/app/services/firebase.service';
 import { Task } from 'src/app/task';
 
@@ -14,10 +14,9 @@ export class UpdateTaskComponent implements OnInit {
   @Input() task: Task;
   currentTask;
 
-  constructor(public firebaseService: FirebaseService, public modalController: ModalController) { }
+  constructor(public firebaseService: FirebaseService, public modalController: ModalController, private toast: ToastController) { }
 
   ngOnInit() {
-    console.log(this.task);
     this.currentTask = new FormGroup({
       id: new FormControl(this.task.id),
       taskName: new FormControl(this.task.taskName + '', Validators.required),
@@ -33,8 +32,20 @@ export class UpdateTaskComponent implements OnInit {
   }
 
   updateTask() {
-    this.firebaseService.updateTask(this.currentTask.value).then(res => {
-      console.log(res);
+    this.firebaseService.updateTask(this.currentTask.value).then(() => {
+      this.presentCompleteToast(this.currentTask.value);
+    });
+  }
+
+  // Toast
+  async presentCompleteToast(task) {
+    const toast = await this.toast.create({
+      message: 'Task Updated Successfully',
+      duration: 2000,
+
+    });
+    await toast.present();
+    await toast.onWillDismiss().then(() => {
       this.dismiss();
     });
   }

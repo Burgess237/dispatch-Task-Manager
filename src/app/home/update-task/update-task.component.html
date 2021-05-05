@@ -19,11 +19,11 @@
     </ion-item> 
     <ion-item lines="full">
       <ion-label position="floating">Creation Date</ion-label>
-      <ion-datetime displayFormat="DD MMM YYYY" [value]="task.creationDate"></ion-datetime>
+      <ion-datetime displayFormat="DD MMM YYYY" [value]="task.creationDate" min="2020" max="2050"></ion-datetime>
     </ion-item> 
     <ion-item lines="full">
       <ion-label position="floating">Due Date</ion-label>
-      <ion-datetime displayFormat="DD MMM YYYY HH:mm" [value]="task.dueDate"></ion-datetime>
+      <ion-datetime displayFormat="DD MMM YYYY HH:mm" [value]="task.dueDate" min="2020" max="2050"></ion-datetime>
     </ion-item>
 
     <ion-item lines="full">
