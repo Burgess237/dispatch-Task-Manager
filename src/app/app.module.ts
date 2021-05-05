@@ -21,6 +21,8 @@ import { CreateTaskComponent } from './home/create-task/create-task.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ViewTaskComponent } from './home/view-task/view-task.component';
 import { AngularFireAuthGuard, hasCustomClaim, redirectUnauthorizedTo, redirectLoggedInTo } from '@angular/fire/auth-guard';
+import { FirebaseAuthentication } from '@ionic-native/firebase-authentication/ngx';
+import { GooglePlus } from '@ionic-native/google-plus/ngx';
 
 @NgModule({
   declarations: [AppComponent, UpdateTaskComponent, CreateTaskComponent, ViewTaskComponent],
@@ -39,7 +41,7 @@ import { AngularFireAuthGuard, hasCustomClaim, redirectUnauthorizedTo, redirectL
   exports: [
 
   ],
-  providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }, AngularFireAuthGuard],
+  providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }, AngularFireAuthGuard, FirebaseAuthentication, GooglePlus],
   bootstrap: [AppComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })

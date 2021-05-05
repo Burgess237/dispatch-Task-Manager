@@ -35,21 +35,29 @@
     }
 }
 
-ion-content {
-    height: 100%;
-}
-
-ion-row {
+ion-content::part(background) {
     height: 100%;
     background-image: url("../../assets/images/bg-01.png");
-    justify-content: center;
-    align-content: center;
+}
+
+ion-grid::part(background) {
+    background: transparent;
+}
+
+ion-row::part(background) {
+    height: 100%;
+    background: transparent;
+
 }
 
 ion-col {
     margin: auto;
     padding: 20px;
     border-radius: 3px;
+}
+
+ion-col {
+    background-color: black;
 }
 
 .jimbu-logo {

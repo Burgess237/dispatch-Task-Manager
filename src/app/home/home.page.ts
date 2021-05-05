@@ -51,7 +51,8 @@ export class HomePage implements OnInit {
           collectFrom: e.payload.doc.data().collectFrom,
           deliverTo: e.payload.doc.data().deliverTo,
           collectLocation: e.payload.doc.data().collectLocation,
-          deliverLocation: e.payload.doc.data().deliverLocation
+          deliverLocation: e.payload.doc.data().deliverLocation,
+          description: e.payload.doc.data().description,
           }));
       }
       this.removeComplete();
@@ -71,7 +72,8 @@ export class HomePage implements OnInit {
             collectFrom: e.payload.doc.data().collectFrom,
             deliverTo: e.payload.doc.data().deliverTo,
             collectLocation: e.payload.doc.data().collectLocation,
-            deliverLocation: e.payload.doc.data().deliverLocation
+            deliverLocation: e.payload.doc.data().deliverLocation,
+            description: e.payloaddoc.data().description,
           }));
       }
       this.removeComplete();

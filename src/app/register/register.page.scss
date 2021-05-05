@@ -1,0 +1,67 @@
+.small-text {
+    text-decoration: none;
+    display: block;
+    font-size: 14px;
+    text-align: center;
+    margin-top: 10px;
+}
+
+.divider {
+    display: flex;
+    
+    &:before,
+    &:after {
+      content: "";
+      flex: 1;
+    }
+}
+  
+.line {
+    align-items: center;
+    margin: 1em -1em;
+    color: #cccccc;
+    
+    &:before,
+    &:after {
+      height: 1px;
+      margin: 0 1em;
+    }
+} 
+
+.one-line {
+    &:before,
+    &:after {
+       background: #cccccc;
+    }
+}
+
+ion-content::part(background) {
+    height: 100%;
+    background-image: url("../../assets/images/bg-01.png");
+}
+
+ion-grid::part(background) {
+    background: transparent;
+}
+
+ion-row::part(background) {
+    height: 100%;
+    background: transparent;
+
+}
+
+ion-col {
+    margin: auto;
+    padding: 20px;
+    border-radius: 3px;
+}
+
+ion-col {
+    background-color: black;
+}
+
+.jimbu-logo {
+    width: 231px;
+    height: 59.5px;
+    margin-bottom: 20px;
+}

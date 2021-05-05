@@ -16,7 +16,11 @@
     <ion-item lines="full">
       <ion-label position="floating">Task Name</ion-label>
       <ion-input type="text" formControlName="taskName"></ion-input>
-    </ion-item> 
+    </ion-item>
+    <ion-item lines="full">
+      <ion-label position="floating">Task Description</ion-label>
+      <ion-input type="text" formControlName="description"></ion-input>
+    </ion-item>  
     <ion-item lines="full">
       <ion-label position="floating">Creation Date</ion-label>
       <ion-datetime displayFormat="DD MMM YYYY" [value]="currentDate | date:'DD-MMM-YYYY'" formControlName="creationDate" [disabled]="true"></ion-datetime>

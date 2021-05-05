@@ -27,7 +27,8 @@ export class UpdateTaskComponent implements OnInit {
       collectFrom: new FormControl(this.task.collectFrom, Validators.required),
       collectLocation: new FormControl(this.task.collectLocation),
       deliverTo: new FormControl(this.task.deliverTo, Validators.required),
-      deliverLocation: new FormControl(this.task.deliverLocation)
+      deliverLocation: new FormControl(this.task.deliverLocation),
+      description: new FormControl(this.task.description),
     });
   }
 

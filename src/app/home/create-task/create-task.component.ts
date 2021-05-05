@@ -32,7 +32,8 @@ export class CreateTaskComponent implements OnInit {
       collectFrom: new FormControl('', Validators.required),
       collectLocation: new FormControl(''),
       deliverTo: new FormControl('', Validators.required),
-      deliverLocation: new FormControl('')
+      deliverLocation: new FormControl(''),
+      description: new FormControl('', Validators.required)
     });
 
   }

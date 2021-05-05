@@ -18,6 +18,10 @@
       <ion-input type="text" formControlName="taskName" value="task.taskName"></ion-input>
     </ion-item> 
     <ion-item lines="full">
+      <ion-label position="floating">Task Description</ion-label>
+      <ion-input type="text" formControlName="description" value="task.description"></ion-input>
+    </ion-item>
+    <ion-item lines="full">
       <ion-label position="floating">Creation Date</ion-label>
       <ion-datetime displayFormat="DD MMM YYYY" [value]="task.creationDate" min="2020" max="2050"></ion-datetime>
     </ion-item> 
@@ -28,7 +32,7 @@
 
     <ion-item lines="full">
       <ion-label position="floating">Priority</ion-label>
-      <ion-select type="text" formControlName="priority">
+      <ion-select formControlName="priority">
         <ion-select-option value="low">Low</ion-select-option>
         <ion-select-option value="medium">Medium</ion-select-option>
         <ion-select-option value="high">High</ion-select-option>

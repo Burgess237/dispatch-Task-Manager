@@ -1,6 +1,7 @@
 export class Task {
     id: string;
     taskName: string;
+    description: string;
     creationDate: Date; // ISO date
     dueDate: Date; // ISO date
     priority: string; // low medium high

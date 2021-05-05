@@ -1,6 +1,6 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>View Task</ion-title>
+    <ion-title>{{ task.taskName }}</ion-title>
     <ion-buttons slot="end">
       <ion-button (click)="dismiss()">
         <ion-icon slot="icon-only" name="close"></ion-icon>
@@ -13,9 +13,9 @@
 
   <ion-list>
     <ion-item>
-      <item-label>
-        {{task.taskName}}
-      </item-label>
+      <ion-label>
+        <p>{{task.description}}</p>
+      </ion-label>
     </ion-item>
     <ion-item>
       <ion-label>
