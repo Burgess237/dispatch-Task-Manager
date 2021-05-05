@@ -1,5 +1,16 @@
 # dispach-todo-io5
 
+# Description
+
+This is a CRUD based ionic/codova application that is aimed at helping our office staff communicate tasks to off-site staff.
+
+## Features
+
+* Realtime updates to tasks
+* Basic linking abilities
+* Google Sign in through firebase
+* Both android and apple ios tested (up to SDK: 22)
+
 ## Getting Started
 
 * [Download the installer](https://nodejs.org/) for Node LTS.
@@ -23,3 +34,10 @@
 ### iOS
 
 1. Run `ionic cordova run ios --prod`
+
+## Planned features
+
+* Firebase Push notifications for new task alerts
+* Basic whitelabelling
+* Splitting the base app to be a child of a larger app that allows white labelled reselling
+* Optimised User interactions (Set edit to be on ionSwipe in mobile but on click on desktop mode)
