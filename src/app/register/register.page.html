@@ -1,12 +1,17 @@
 <ion-header>
   <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
     <ion-title>Register</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
+  <ion-grid>
   <ion-row>
     <ion-col>
+      <img src="../../assets/images/JIMBU-Logo_White.png" class="jimbu-logo">
       <form class="ion-form">    
         <ion-item lines="full">
           <ion-label position="floating">Email</ion-label>
@@ -20,10 +25,11 @@
     
         <ion-row class="button-row">
           <ion-col> 
-          <ion-button expand="block" type="submit" (click)="signUp(email, password)">Login</ion-button>
+          <ion-button expand="block" type="submit" (click)="signUp(email, password)">Register</ion-button>
         </ion-col>
       </ion-row>
       </form>
     </ion-col>
   </ion-row>
+</ion-grid>
 </ion-content>

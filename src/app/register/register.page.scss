@@ -50,18 +50,25 @@ ion-row::part(background) {
 
 }
 
-ion-col {
-    margin: auto;
-    padding: 20px;
-    border-radius: 3px;
+ion-grid{
+    height: 100%;
+    width: 100%;
+    display: grid;
 }
 
 ion-col {
-    background-color: black;
+    margin: auto;
+}
+
+form {
+    background-color: #1e1e1e;
+    padding: 15px;
 }
 
 .jimbu-logo {
-    width: 231px;
-    height: 59.5px;
+    width: 200px;
+    /* height: 59.5px; */
+    margin: auto;
+    display: block;
     margin-bottom: 20px;
 }

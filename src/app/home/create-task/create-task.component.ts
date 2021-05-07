@@ -3,6 +3,7 @@ import { AngularFireDatabase } from '@angular/fire/database';
 import { AngularFirestore, fromCollectionRef } from '@angular/fire/firestore';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ModalController } from '@ionic/angular';
+import { AuthService } from 'src/app/services/auth.service';
 import { FirebaseService } from 'src/app/services/firebase.service';
 import { Task } from 'src/app/task';
 
@@ -16,7 +17,7 @@ export class CreateTaskComponent implements OnInit {
   date = new Date();
   currentDate: string;
 
-  constructor(public modalController: ModalController, public firebaseService: FirebaseService) {
+  constructor(public modalController: ModalController, public firebaseService: FirebaseService, public auth: AuthService) {
     this.currentDate = this.date.getDate() + '-' + this.date.getMonth() + '-' + this.date.getFullYear();
    }
 
@@ -33,7 +34,7 @@ export class CreateTaskComponent implements OnInit {
       collectLocation: new FormControl(''),
       deliverTo: new FormControl('', Validators.required),
       deliverLocation: new FormControl(''),
-      description: new FormControl('', Validators.required)
+      description: new FormControl('', Validators.required),
     });
 
   }
@@ -47,15 +48,11 @@ export class CreateTaskComponent implements OnInit {
   }
 
   createTask() {
-
-    this.firebaseService.createTask(this.createdTask.value).then(res=> {
+    const createdTaskObject = this.createdTask.value;
+    createdTaskObject.createdBy = this.auth.userData.displayName;
+    this.firebaseService.createTask(createdTaskObject).then(res=> {
       this.dismiss();
     });
   }
 
-}
-
-export interface User {
-  name: string;
-  id: number;
 }

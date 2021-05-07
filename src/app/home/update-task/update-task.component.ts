@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ModalController, ToastController } from '@ionic/angular';
+import { AuthService } from 'src/app/services/auth.service';
 import { FirebaseService } from 'src/app/services/firebase.service';
 import { Task } from 'src/app/task';
 
@@ -14,7 +15,11 @@ export class UpdateTaskComponent implements OnInit {
   @Input() task: Task;
   currentTask;
 
-  constructor(public firebaseService: FirebaseService, public modalController: ModalController, private toast: ToastController) { }
+  constructor(
+    public firebaseService: FirebaseService,
+    public modalController: ModalController,
+    private toast: ToastController,
+    public auth: AuthService) { }
 
   ngOnInit() {
     this.currentTask = new FormGroup({
@@ -33,8 +38,12 @@ export class UpdateTaskComponent implements OnInit {
   }
 
   updateTask() {
-    this.firebaseService.updateTask(this.currentTask.value).then(() => {
-      this.presentCompleteToast(this.currentTask.value);
+    const taskToUpdate = this.currentTask.value;
+    taskToUpdate.lastEditedBy = this.auth.userData.displayName;
+
+
+    this.firebaseService.updateTask(taskToUpdate).then(() => {
+      this.presentCompleteToast(taskToUpdate);
     });
   }
 

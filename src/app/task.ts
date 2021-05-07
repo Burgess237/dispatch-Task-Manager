@@ -10,4 +10,7 @@ export class Task {
     collectLocation: string;
     deliverTo: string; // To Location
     deliverLocation: string;
+    createdBy: string;
+    lastEditedBy: string;
+    archived: boolean;
 }

@@ -13,7 +13,7 @@ import { AngularFireAuth } from '@angular/fire/auth';
 })
 export class AuthService {
 
-  userData: any;
+  userData: User;
 
   constructor(
     public ngFireAuth: FirebaseAuthentication,
@@ -25,6 +25,7 @@ export class AuthService {
     public firebaseLogin: AngularFireAuth,
     public toast: ToastController
 	){
+    // try login from localstore?
     if(this.platform.is('cordova')) {
       this.ngFireAuth.onAuthStateChanged().subscribe(user => {
         if (user) {
@@ -94,42 +95,19 @@ export class AuthService {
 
   // Auth providers
   authLogin() {
-    /*console.log(this.platform.platforms());
-    if(this.platform.is('mobileweb') || this.platform.is('mobile') || this.platform.is('desktop')) {
-      return this.ngFireAuth.signInWithPopup(new auth.GoogleAuthProvider())
-      .then((result) => {
-         this.ngZone.run(() => {
-            this.router.navigate(['home']);
-          });
-        this.setUserData(result.user);
-      }).catch((error) => {
-        window.alert(error);
-      });
-    } else {
-      return this.ngFireAuth.auth.signInWithRedirect(new auth.GoogleAuthProvider())
-        .then((result: any) => {
-          this.ngZone.run(() => {
-            this.router.navigate(['home']);
-          });
-          this.setUserData(result.user);
-        });
-    }*/
     if(this.platform.is('cordova')) {
       return this.googlePlus.login({
         webClientID: '277060750108-ogquhi1bn51raslqtbpe1mrmqo00h5dv.apps.googleusercontent.com',
         offline: true,
       }).then( res => {
-        this.showToast(JSON.stringify(res));
           this.ngFireAuth.signInWithGoogle(res.idToken, res.accessToken)
           .then(() => {
-            this.showToast('Login Returned');
             this.ngFireAuth.onAuthStateChanged().subscribe(user => {
               if (user) {
                 this.userData = user;
                 localStorage.setItem('user', JSON.stringify(this.userData));
                 JSON.parse(localStorage.getItem('user'));
                 this.ngZone.run(() => {
-                  this.showToast('navigated home');
                   this.router.navigate(['home']);
                 });
               } else {
@@ -176,7 +154,7 @@ export class AuthService {
       this.router.navigate(['login']);
     });
   }
-
+/* Just in case we need to toast out any user alerts */
   async showToast(toastMessage: string) {
     const toast = await this.toast.create({
       message: toastMessage,

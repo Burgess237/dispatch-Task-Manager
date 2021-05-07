@@ -16,39 +16,38 @@
       
     </ion-refresher-content>
   </ion-refresher>
-  <ion-list>
-    <!-- Multi-line sliding item with icon options on both sides -->
-    <ion-item-sliding *ngFor="let task of tasks">
-        <ion-item detail="true" (click)="viewTaskModel(task)">
-          <ion-label>
-            <h2>{{task.taskName}}</h2>
-            <p>Due: {{task.dueDate | date:'MM dd, YYYY @ HH:mm'}}</p>
-            <p>Collect from: {{task.collectFrom}}</p>
-            <p>Deliver to: {{task.deliverTo}}</p>
-            <ion-note slot="end" *ngIf="task.priority === 'high'">
-              <ion-icon name="flag-outline" color="danger" size="large"></ion-icon>
-            </ion-note>
-            <ion-note slot="end" *ngIf="task.priority === 'medium'">
-              <ion-icon name="flag-outline" color="warning" size="large"></ion-icon>
-            </ion-note>
-            <ion-note slot="end" *ngIf="task.priority === 'low'">
-              <ion-icon name="flag-outline" color="success" size="large"></ion-icon>
-            </ion-note>
-          </ion-label>
-        </ion-item>
-        <ion-item-options side="end" (ionSwipe)="updateTaskModal(task)">
-          <ion-item-option color="tertiary" expandable (click)="updateTaskModal(task)" >
-            <ion-icon name="create-outline"></ion-icon>
-          </ion-item-option>
-        </ion-item-options>
-        <ion-item-options side="start" (ionSwipe)="markTaskComplete(task)">
-          <ion-item-option color="success" expandable (click)="markTaskComplete(task)">
-            <ion-icon name="checkmark-outline"></ion-icon>
-          </ion-item-option>
-        </ion-item-options>
-      </ion-item-sliding>
-  </ion-list>
-
+        <ion-list>
+        <!-- Multi-line sliding item with icon options on both sides -->
+        <ion-item-sliding *ngFor="let task of tasks">
+            <ion-item detail="true" (click)="viewTaskModel(task)">
+              <ion-label>
+                <h2>{{task.taskName}}</h2>
+                <p>Due: {{task.dueDate | date:'MM dd, YYYY @ HH:mm'}}</p>
+                <p>Collect from: {{task.collectFrom}}</p>
+                <p>Deliver to: {{task.deliverTo}}</p>
+                <ion-note slot="end" *ngIf="task.priority === 'high'">
+                  <ion-icon name="flag-outline" color="danger" size="large"></ion-icon>
+                </ion-note>
+                <ion-note slot="end" *ngIf="task.priority === 'medium'">
+                  <ion-icon name="flag-outline" color="warning" size="large"></ion-icon>
+                </ion-note>
+                <ion-note slot="end" *ngIf="task.priority === 'low'">
+                  <ion-icon name="flag-outline" color="success" size="large"></ion-icon>
+                </ion-note>
+              </ion-label>
+            </ion-item>
+            <ion-item-options side="end" (ionSwipe)="updateTaskModal(task)">
+              <ion-item-option color="tertiary" expandable (click)="updateTaskModal(task)" >
+                <ion-icon name="create-outline"></ion-icon>
+              </ion-item-option>
+            </ion-item-options>
+            <ion-item-options side="start" (ionSwipe)="markTaskComplete(task)">
+              <ion-item-option color="success" expandable (click)="markTaskComplete(task)">
+                <ion-icon name="checkmark-outline"></ion-icon>
+              </ion-item-option>
+            </ion-item-options>
+          </ion-item-sliding>
+      </ion-list>
 
   <ion-fab vertical="bottom" horizontal="end" slot="fixed">
     <ion-fab-button (click)="presentModal()">

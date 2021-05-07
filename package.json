@@ -1,15 +1,16 @@
 {
   "name": "dispach-todo-io5",
-  "version": "0.0.1",
-  "author": "Ionic Framework",
-  "homepage": "https://ionicframework.com/",
+  "version": "0.1.1",
+  "author": "Daniel Burgess",
+  "homepage": "https://jimbu.co.za/",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+    "deploy":"ionic build --prod && firebase deploy"
   },
   "private": true,
   "dependencies": {
@@ -23,6 +24,7 @@
     "@angular/platform-browser": "~11.2.0",
     "@angular/platform-browser-dynamic": "~11.2.0",
     "@angular/router": "~11.2.0",
+    "@angular/service-worker": "^11.2.13",
     "@capacitor/android": "^2.4.7",
     "@ionic-native/core": "^5.32.1",
     "@ionic-native/firebase-authentication": "^5.32.1",
