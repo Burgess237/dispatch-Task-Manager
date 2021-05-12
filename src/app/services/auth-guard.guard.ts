@@ -6,6 +6,7 @@ import {
   CanDeactivate,
   CanLoad,
   Route,
+  Router,
   RouterStateSnapshot,
   UrlSegment,
   UrlTree } from '@angular/router';
@@ -18,15 +19,16 @@ import { AuthService } from './auth.service';
 })
 export class AuthGuard implements CanActivate {
 
-  constructor(public authService: AuthService, public firebaseAuth: FirebaseAuthentication) {
+  constructor(public authService: AuthService, public firebaseAuth: FirebaseAuthentication, public router: Router) {
 
   }
 
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean | UrlTree {
-      if(this.authService.userData) {
+      if(this.authService.isLoggedIn) {
         return true;
       }
+      this.router.navigate(['login']);
       return false;
   }
 }

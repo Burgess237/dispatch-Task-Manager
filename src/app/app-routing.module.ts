@@ -2,9 +2,8 @@ import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 import { AuthGuard } from './services/auth-guard.guard';
 
-
 const routes: Routes = [
-  { path: '', redirectTo: 'login', pathMatch: 'full' },
+  { path: '', redirectTo: 'home', pathMatch: 'full' },
   {
     path: 'home',
     loadChildren: () => import('./home/home.module').then(m => m.HomePageModule),
@@ -18,11 +17,11 @@ const routes: Routes = [
   {
     path: 'completed-tasks',
     loadChildren: () => import('./completed-tasks/completed-tasks.module').then( m => m.CompletedTasksPageModule),
-      canActivate: [AuthGuard] },
+    canActivate: [AuthGuard] },
   {
     path: 'account',
     loadChildren: () => import('./account/account.module').then( m => m.AccountPageModule),
-      canActivate: [AuthGuard] },
+    canActivate: [AuthGuard] },
   {
     path: 'reset-password',
     loadChildren: () => import('./reset-password/reset-password.module').then( m => m.ResetPasswordPageModule)

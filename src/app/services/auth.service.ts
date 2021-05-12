@@ -24,31 +24,22 @@ export class AuthService {
     public googlePlus: GooglePlus,
     public firebaseLogin: AngularFireAuth,
     public toast: ToastController
-	){
-    // try login from localstore?
-    if(this.platform.is('cordova')) {
-      this.ngFireAuth.onAuthStateChanged().subscribe(user => {
-        if (user) {
-          this.userData = user;
-          localStorage.setItem('user', JSON.stringify(this.userData));
-          JSON.parse(localStorage.getItem('user'));
-        } else {
-          localStorage.setItem('user', null);
-          JSON.parse(localStorage.getItem('user'));
-        }
-      });
-    } else {
+	){    // try login from localstore?
       this.firebaseLogin.auth.onAuthStateChanged(user => {
+        console.log('Auth Changed');
         if (user) {
+          console.log('Auth Changed - User exists: ' , user);
           this.userData = user;
           localStorage.setItem('user', JSON.stringify(this.userData));
           JSON.parse(localStorage.getItem('user'));
         } else {
+          console.log('Purging user from local storage');
           localStorage.setItem('user', null);
           JSON.parse(localStorage.getItem('user'));
         }
       });
-    }
+
+    // Check if user has already logged in
 
   }
 
@@ -95,22 +86,29 @@ export class AuthService {
 
   // Auth providers
   authLogin() {
-    if(this.platform.is('cordova')) {
+    if(this.platform.is('cordova') || this.platform.is('android') || this.platform.is('ios')) {
       return this.googlePlus.login({
         webClientID: '277060750108-ogquhi1bn51raslqtbpe1mrmqo00h5dv.apps.googleusercontent.com',
         offline: true,
       }).then( res => {
+        //this.showToast('Google login sucess');
           this.ngFireAuth.signInWithGoogle(res.idToken, res.accessToken)
           .then(() => {
+            //this.showToast('Sign in with google');
+
             this.ngFireAuth.onAuthStateChanged().subscribe(user => {
               if (user) {
+                console.log('Auth Changed - User exists: ' , user);
                 this.userData = user;
                 localStorage.setItem('user', JSON.stringify(this.userData));
                 JSON.parse(localStorage.getItem('user'));
                 this.ngZone.run(() => {
+                  //this.showToast('Home navigate');
                   this.router.navigate(['home']);
                 });
+                this.setUserData(user);
               } else {
+                console.log('Auth Changed - User Removed');
                 localStorage.setItem('user', null);
                 JSON.parse(localStorage.getItem('user'));
               }

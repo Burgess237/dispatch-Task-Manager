@@ -20,6 +20,7 @@ import { Router } from '@angular/router';
 export class HomePage implements OnInit {
 
   tasks: Task[] = [];
+  taskBackup: Task[] = [];
   filtered: Task[] = [];
   currentUser;
   constructor(
@@ -86,8 +87,21 @@ export class HomePage implements OnInit {
   }
 
   filterTasks(event) {
-  const searchTerm = event.detail.value;
-  this.filtered = this.tasks.filter(task => task.taskName === searchTerm);
+    this.tasks = this.taskBackup;
+    const searchTerm = event.srcElement.value;
+
+    // Exit method id there is nothing to do
+    if (!searchTerm) {
+      return;
+    }
+
+    /* Filter method is a for each loop that returnes an array of the filtered types and needs
+    * a bool true callback that returns an array item that gets pushed to the current array */
+    this.tasks = this.tasks.filter(currenTask => {
+      if (currenTask.taskName && searchTerm) {
+        return (currenTask.taskName.toLowerCase().indexOf(searchTerm.toLowerCase()) > -1);
+      }
+    });
   }
 
   async presentModal() {

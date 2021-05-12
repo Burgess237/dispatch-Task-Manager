@@ -11,7 +11,7 @@ export class AccountPage implements OnInit {
 
   user: User;
 
-  constructor(private auth: AuthService) {
+  constructor(public auth: AuthService) {
     this.user = this.auth.userData;
   }
 
