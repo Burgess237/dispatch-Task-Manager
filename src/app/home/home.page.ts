@@ -39,7 +39,7 @@ export class HomePage implements OnInit {
     this.currentUser = JSON.parse(localStorage.getItem('user'));
   }
 
-  fetchTasks() {
+  fetchTasks(event?) {
     this.firebaseService.tasksInDueDateOrder().subscribe((res: any) => {
       if(res){
         this.tasks = res.map(e=> ({
@@ -57,51 +57,14 @@ export class HomePage implements OnInit {
           }));
       }
       this.removeComplete();
-    });
-  }
-
-  doRefresh(event) {
-    this.firebaseService.tasksInDueDateOrder().subscribe((res: any) => {
-      if(res){
-        this.tasks = res.map(e=> ({
-            id: e.payload.doc.id,
-            taskName: e.payload.doc.data().taskName,
-            creationDate: e.payload.doc.data().creationDate,
-            dueDate: e.payload.doc.data().dueDate,
-            priority: e.payload.doc.data().priority,
-            status: e.payload.doc.data().status,
-            collectFrom: e.payload.doc.data().collectFrom,
-            deliverTo: e.payload.doc.data().deliverTo,
-            collectLocation: e.payload.doc.data().collectLocation,
-            deliverLocation: e.payload.doc.data().deliverLocation,
-            description: e.payloaddoc.data().description,
-          }));
+      if(event) {
+        event.target.complete();
       }
-      this.removeComplete();
-      event.target.complete();
     });
   }
 
   removeComplete() {
     this.tasks = this.tasks.filter(task => task.status !== 'complete');
-  }
-
-  filterTasks(event) {
-    this.tasks = this.taskBackup;
-    const searchTerm = event.srcElement.value;
-
-    // Exit method id there is nothing to do
-    if (!searchTerm) {
-      return;
-    }
-
-    /* Filter method is a for each loop that returnes an array of the filtered types and needs
-    * a bool true callback that returns an array item that gets pushed to the current array */
-    this.tasks = this.tasks.filter(currenTask => {
-      if (currenTask.taskName && searchTerm) {
-        return (currenTask.taskName.toLowerCase().indexOf(searchTerm.toLowerCase()) > -1);
-      }
-    });
   }
 
   async presentModal() {
@@ -113,7 +76,8 @@ export class HomePage implements OnInit {
         // Pass User to track who created it?
         user: this.authService.userData
       },
-      presentingElement: await this.modalController.getTop() // Get the top-most ion-modal
+      presentingElement: await this.modalController.getTop()
+      // Get the top-most ion-modal
     });
     return await modal.present();
   }

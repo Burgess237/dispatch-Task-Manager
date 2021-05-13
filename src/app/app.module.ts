@@ -13,7 +13,7 @@ import { AngularFireModule } from '@angular/fire';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 import { AngularFireStorageModule } from '@angular/fire/storage';
 import { AngularFireDatabaseModule } from '@angular/fire/database';
-
+import {FCM} from 'cordova-plugin-fcm-with-dependecy-updated/ionic/ngx';
 import { environment } from '../environments/environment';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { UpdateTaskComponent } from './home/update-task/update-task.component';
@@ -48,7 +48,7 @@ import { ServiceWorkerModule } from '@angular/service-worker';
   exports: [
 
   ],
-  providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }, AngularFireAuthGuard, FirebaseAuthentication, GooglePlus],
+  providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }, AngularFireAuthGuard, FirebaseAuthentication, GooglePlus, FCM],
   bootstrap: [AppComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })

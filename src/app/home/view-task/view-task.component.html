@@ -1,6 +1,6 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>{{ task.taskName }}</ion-title>
+    <ion-title class="ion-text-wrap">{{ task.taskName }}</ion-title>
     <ion-buttons slot="end">
       <ion-button (click)="dismiss()">
         <ion-icon slot="icon-only" name="close"></ion-icon>
@@ -10,6 +10,8 @@
 </ion-header>
 
 <ion-content>
+
+  <div style="min-height:30px; clear: both"></div>
 
   <ion-list>
     <ion-item>
@@ -54,8 +56,8 @@
     <ion-item>
       <ion-label>
         <p>Status:</p>
-        <h2 *ngIf="task.status==='complete'" color="success">{{task.status | titlecase}}</h2>
-        <h2 *ngIf="task.status==='active'" color="warning">{{task.status | titlecase}}</h2>
+        <h2 *ngIf="task.status==='complete'" class="complete">{{task.status | titlecase}}</h2>
+        <h2 *ngIf="task.status==='active'" class="active">{{task.status | titlecase}}</h2>
       </ion-label>
     </ion-item>
   </ion-list>

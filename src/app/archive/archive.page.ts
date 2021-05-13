@@ -1,3 +1,4 @@
+import { TmplAstElement } from '@angular/compiler';
 import { Component, OnInit } from '@angular/core';
 import { ModalController, ToastController } from '@ionic/angular';
 import { UpdateTaskComponent } from '../home/update-task/update-task.component';
@@ -5,15 +6,18 @@ import { FirebaseService } from '../services/firebase.service';
 import { Task } from '../task';
 
 @Component({
-  selector: 'app-completed-tasks',
-  templateUrl: './completed-tasks.page.html',
-  styleUrls: ['./completed-tasks.page.scss'],
+  selector: 'app-archive',
+  templateUrl: './archive.page.html',
+  styleUrls: ['./archive.page.scss'],
 })
-export class CompletedTasksPage implements OnInit {
+export class ArchivePage implements OnInit {
 
-  completedTasks: Task[] = [];
+  archivedTasks: Task[] = [];
 
-  constructor(public toastController: ToastController ,public firestore: FirebaseService, public modalController: ModalController) { }
+  constructor(
+    public firestore: FirebaseService,
+    public modalController: ModalController,
+    public toastController: ToastController) { }
 
   ngOnInit() {
     this.fetchTasks();
@@ -22,7 +26,7 @@ export class CompletedTasksPage implements OnInit {
   fetchTasks(event?) {
     this.firestore.getTasks().subscribe((res: any) => {
       if(res){
-        this.completedTasks = res.map(e=> ({
+        this.archivedTasks = res.map(e=> ({
           id: e.payload.doc.id,
           taskName: e.payload.doc.data().taskName,
           creationDate: e.payload.doc.data().creationDate,
@@ -45,8 +49,8 @@ export class CompletedTasksPage implements OnInit {
   }
 
   removeComplete() {
-    this.completedTasks = this.completedTasks.filter(task =>
-      task.status === 'complete' && task.archived === false);
+    /* Only show tasks where arhived = true */
+    this.archivedTasks = this.archivedTasks.filter(task => task.archived === true);
   }
 
   async openCompletedTask(currentTask) {
@@ -62,9 +66,9 @@ export class CompletedTasksPage implements OnInit {
     return await modal.present();
   }
 
-  archiveTask(task: Task) {
+  unArchiveTask(task: Task) {
     const currentTask = task;
-    currentTask.archived = true;
+    currentTask.archived = false;
     this.firestore.updateTask(currentTask).then(() => {
       this.showToast();
     });
@@ -76,7 +80,6 @@ export class CompletedTasksPage implements OnInit {
       duration: 2000
     });
 
-    return await toast.present();
+   return await toast.present();
   }
-
 }

@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { ModalController, ToastController } from '@ionic/angular';
+import { AuthService } from 'src/app/services/auth.service';
 import { FirebaseService } from 'src/app/services/firebase.service';
 import { Task } from 'src/app/task';
 
@@ -12,7 +13,11 @@ export class ViewTaskComponent implements OnInit {
 
   @Input() task: Task;
 
-  constructor(public modalController: ModalController, public firebase: FirebaseService, public toast: ToastController) { }
+  constructor(
+    public modalController: ModalController,
+    public auth: AuthService,
+    public firebase: FirebaseService,
+    public toast: ToastController) { }
 
   ngOnInit() {}
 
@@ -23,6 +28,7 @@ export class ViewTaskComponent implements OnInit {
   markComplete() {
     const currentTask = this.task;
     currentTask.status='complete';
+    currentTask.lastEditedBy = this.auth.userData.displayName;
     this.firebase.updateTask(currentTask).then(res => {
       this.presentCompleteToast(this.task);
     });

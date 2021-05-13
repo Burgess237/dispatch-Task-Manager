@@ -41,7 +41,6 @@ export class UpdateTaskComponent implements OnInit {
     const taskToUpdate = this.currentTask.value;
     taskToUpdate.lastEditedBy = this.auth.userData.displayName;
 
-
     this.firebaseService.updateTask(taskToUpdate).then(() => {
       this.presentCompleteToast(taskToUpdate);
     });
