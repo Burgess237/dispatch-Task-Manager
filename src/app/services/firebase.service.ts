@@ -33,7 +33,9 @@ export class FirebaseService {
   }
 
   completedTasks() {
-    return this.firestore.collection('tasks', ref => ref.where('status', '==', 'complete')).snapshotChanges();
+    return this.firestore.collection('tasks', ref => ref
+    .where('status', '==', 'complete')
+    .where('archived', '==', false)).snapshotChanges();
   }
 
   archivedTasks() {

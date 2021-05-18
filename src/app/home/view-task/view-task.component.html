@@ -10,9 +10,6 @@
 </ion-header>
 
 <ion-content>
-
-  <div style="min-height:30px; clear: both"></div>
-
   <ion-list>
     <ion-item>
       
@@ -51,6 +48,12 @@
         <p>Deliver To:</p> 
         <h4>{{task.deliverTo}}</h4>
         <a href="{{task.deliverLocation}}" target="_blank">{{task.deliverLocation}}</a>
+      </ion-label>
+    </ion-item>
+    <ion-item>
+      <ion-label>
+        <p>Account Manager</p>
+        <h2>{{task?.accountManager}}</h2>
       </ion-label>
     </ion-item>
     <ion-item>

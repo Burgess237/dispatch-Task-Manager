@@ -13,7 +13,7 @@ export class Task {
     createdBy: string;
     lastEditedBy: string;
     archived: boolean;
-    accountManager: AccountManager;
+    accountManager: string;
 }
 
 export class AccountManager {

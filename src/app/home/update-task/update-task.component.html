@@ -29,7 +29,19 @@
       <ion-label position="floating">Due Date</ion-label>
       <ion-datetime displayFormat="DD MMM YYYY HH:mm"  min="2020" max="2050" formControlName="dueDate"></ion-datetime>
     </ion-item>
-
+    <ion-item lines="full">
+      <ion-label>Account Manager</ion-label>
+      <ion-select type="text" formControlName="accountManager" placeholder="Select Account Manager">
+        <ion-select-option value="Charné">Charné</ion-select-option>
+        <ion-select-option value="Chris">Chris</ion-select-option>
+        <ion-select-option value="Clare">Clare</ion-select-option>
+        <ion-select-option value="Jenna">Jenna</ion-select-option>
+        <ion-select-option value="Jerome">Jerome</ion-select-option>
+        <ion-select-option value="Julia">Julia</ion-select-option>
+        <ion-select-option value="Natalie">Natalie</ion-select-option>
+        <ion-select-option value="Ryan">Ryan</ion-select-option>
+      </ion-select>
+    </ion-item>
     <ion-item lines="full">
       <ion-label position="floating">Priority</ion-label>
       <ion-select formControlName="priority">

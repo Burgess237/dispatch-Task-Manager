@@ -54,6 +54,7 @@ export class HomePage implements OnInit {
           collectLocation: e.payload.doc.data().collectLocation,
           deliverLocation: e.payload.doc.data().deliverLocation,
           description: e.payload.doc.data().description,
+          accountManager: e.payload.doc.data().accountManager,
           }));
       }
       this.removeComplete();
