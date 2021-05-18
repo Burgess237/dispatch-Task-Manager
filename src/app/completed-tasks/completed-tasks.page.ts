@@ -20,7 +20,7 @@ export class CompletedTasksPage implements OnInit {
   }
 
   fetchTasks(event?) {
-    this.firestore.getTasks().subscribe((res: any) => {
+    this.firestore.completedTasks().subscribe((res: any) => {
       if(res){
         this.completedTasks = res.map(e=> ({
           id: e.payload.doc.id,
@@ -36,17 +36,11 @@ export class CompletedTasksPage implements OnInit {
           description: e.payload.doc.data().description,
           archived: e.payload.doc.data().archived
         }));
-          this.removeComplete();
           if(event) {
             event.target.complete();
           }
       }
     });
-  }
-
-  removeComplete() {
-    this.completedTasks = this.completedTasks.filter(task =>
-      task.status === 'complete' && task.archived === false);
   }
 
   async openCompletedTask(currentTask) {

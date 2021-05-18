@@ -152,13 +152,5 @@ export class AuthService {
       this.router.navigate(['login']);
     });
   }
-/* Just in case we need to toast out any user alerts */
-  async showToast(toastMessage: string) {
-    const toast = await this.toast.create({
-      message: toastMessage,
-      duration: 2000
-    });
-    await toast.present();
-  }
 
 }

@@ -24,7 +24,7 @@ export class ArchivePage implements OnInit {
   }
 
   fetchTasks(event?) {
-    this.firestore.getTasks().subscribe((res: any) => {
+    this.firestore.archivedTasks().subscribe((res: any) => {
       if(res){
         this.archivedTasks = res.map(e=> ({
           id: e.payload.doc.id,
@@ -40,7 +40,6 @@ export class ArchivePage implements OnInit {
           description: e.payload.doc.data().description,
           archived: e.payload.doc.data().archived
         }));
-          this.removeComplete();
           if(event) {
             event.target.complete();
           }
@@ -48,10 +47,6 @@ export class ArchivePage implements OnInit {
     });
   }
 
-  removeComplete() {
-    /* Only show tasks where arhived = true */
-    this.archivedTasks = this.archivedTasks.filter(task => task.archived === true);
-  }
 
   async openCompletedTask(currentTask) {
     const modal = await this.modalController.create({

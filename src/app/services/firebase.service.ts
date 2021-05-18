@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { redirectLoggedInTo } from '@angular/fire/auth-guard';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { Task } from '../task';
 
@@ -29,6 +30,14 @@ export class FirebaseService {
 
   tasksInDueDateOrder() {
     return this.firestore.collection('tasks', ref => ref.orderBy('dueDate')).snapshotChanges();
+  }
+
+  completedTasks() {
+    return this.firestore.collection('tasks', ref => ref.where('status', '==', 'complete')).snapshotChanges();
+  }
+
+  archivedTasks() {
+    return this.firestore.collection('tasks', ref => ref.where('archived', '==', true)).snapshotChanges();
   }
 
 }

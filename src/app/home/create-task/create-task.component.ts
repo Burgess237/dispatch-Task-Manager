@@ -18,7 +18,7 @@ export class CreateTaskComponent implements OnInit {
   currentDate: string;
 
   constructor(public modalController: ModalController, public firebaseService: FirebaseService, public auth: AuthService) {
-    this.currentDate = this.date.getDate() + '-' + this.date.getMonth() + '-' + this.date.getFullYear();
+    this.currentDate = this.date.toISOString();
    }
 
 
@@ -26,7 +26,7 @@ export class CreateTaskComponent implements OnInit {
     this.createdTask = new FormGroup({
       id: new FormControl(''),
       taskName: new FormControl('', Validators.required),
-      creationDate: new FormControl(this.currentDate, Validators.required),
+      creationDate: new FormControl({value: this.currentDate, disabled: true}, Validators.required),
       dueDate: new FormControl('', Validators.required),
       priority: new FormControl('', Validators.required),
       status: new FormControl('', Validators.required),

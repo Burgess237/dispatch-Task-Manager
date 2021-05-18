@@ -19,7 +19,7 @@
             <ion-item detail="true" (click)="viewTaskModel(task)">
               <ion-label class="ion-text-wrap">
                 <h2>{{task.taskName}}</h2>
-                <p>Due: {{task.dueDate | date:'MM dd, YYYY @ HH:mm'}}</p>
+                <p>Due: {{task.dueDate | date:'MMM dd, YYYY @ HH:mm'}}</p>
                 <p>Collect from: {{task.collectFrom}}</p>
                 <p>Deliver to: {{task.deliverTo}}</p>
                 <ion-note slot="end" *ngIf="task.priority === 'high'">

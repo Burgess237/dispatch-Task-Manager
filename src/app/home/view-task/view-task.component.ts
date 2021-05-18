@@ -19,7 +19,9 @@ export class ViewTaskComponent implements OnInit {
     public firebase: FirebaseService,
     public toast: ToastController) { }
 
-  ngOnInit() {}
+  ngOnInit() {
+    console.log(this.task);
+  }
 
   dismiss() {
     this.modalController.dismiss({ dismissed: true });

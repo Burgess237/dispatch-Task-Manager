@@ -13,4 +13,11 @@ export class Task {
     createdBy: string;
     lastEditedBy: string;
     archived: boolean;
+    accountManager: AccountManager;
+}
+
+export class AccountManager {
+    name: string;
+    id: number;
+    contactNumber: number;
 }
