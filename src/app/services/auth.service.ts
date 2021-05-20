@@ -26,6 +26,7 @@ export class AuthService {
     public toast: ToastController
 	){    // try login from localstore?
       this.firebaseLogin.auth.onAuthStateChanged(user => {
+        console.log(this.platform);
         console.log('Auth Changed');
         if (user) {
           console.log('Auth Changed - User exists: ' , user);
@@ -86,7 +87,9 @@ export class AuthService {
 
   // Auth providers
   authLogin() {
-    if(this.platform.is('cordova') || this.platform.is('android') || this.platform.is('ios')) {
+    console.log('Auth Method');
+    if(this.platform.is('cordova')) {
+      console.log('Login with cordova');
       return this.googlePlus.login({
         webClientID: '277060750108-ogquhi1bn51raslqtbpe1mrmqo00h5dv.apps.googleusercontent.com',
         offline: true,
@@ -117,6 +120,7 @@ export class AuthService {
         }
       );
     } else {
+      console.log('Login without cordova');
       return this.firebaseLogin.auth.signInWithPopup(new auth.GoogleAuthProvider())
       .then((result) => {
          this.ngZone.run(() => {

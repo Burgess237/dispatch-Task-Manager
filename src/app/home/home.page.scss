@@ -1,12 +1,7 @@
-@media screen and (min-width: 500px) {
-    ion-item-sliding {
-        width: 49%;
-        float: left;
-    }
-
+@media screen and (min-width: 992px) {
     ion-list {
-        margin: auto;
-        max-width: 80%;
+        display: grid;
+        grid-template-columns: 50% 50%;
     }
 
 }

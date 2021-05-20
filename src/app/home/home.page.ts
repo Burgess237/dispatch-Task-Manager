@@ -55,6 +55,8 @@ export class HomePage implements OnInit {
           deliverLocation: e.payload.doc.data().deliverLocation,
           description: e.payload.doc.data().description,
           accountManager: e.payload.doc.data().accountManager,
+          createdBy: e.payload.doc.data().createdBy,
+          lastEditedBy: e.payload.doc.data().lastEditedBy
           }));
       }
       this.removeComplete();
@@ -120,7 +122,9 @@ export class HomePage implements OnInit {
   }
 
   undoCompletedTask(task) {
-    this.firebaseService.updateTask(task).then();
+    const currentTask = task;
+    currentTask.status='active';
+    this.firebaseService.updateTask(task);
   }
 
   // Toast
@@ -142,5 +146,6 @@ export class HomePage implements OnInit {
     await toast.present();
 
   }
+
 
 }

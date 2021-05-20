@@ -53,6 +53,7 @@ export class CreateTaskComponent implements OnInit {
     createdTaskObject.createdBy = this.auth.userData.displayName;
     createdTaskObject.lastEditedBy = this.auth.userData.displayName;
     createdTaskObject.archived = false;
+    console.log(createdTaskObject);
     this.firebaseService.createTask(createdTaskObject).then(res=> {
       this.dismiss();
     });

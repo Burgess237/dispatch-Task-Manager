@@ -27,7 +27,7 @@
     </ion-item> 
     <ion-item lines="full">
       <ion-label position="floating">Due Date</ion-label>
-      <ion-datetime displayFormat="DD MMM YYYY HH:mm" min="2020" max="2050" formControlName="dueDate"></ion-datetime>
+      <ion-datetime displayFormat="DD MMM YYYY" min="2020" max="2050" formControlName="dueDate"></ion-datetime>
     </ion-item>
 
     
@@ -77,7 +77,7 @@
     <ion-item lines="full">
       <ion-label position="floating">Status</ion-label>
       <ion-select type="text" formControlName="status">
-        <ion-select-option value="active">To Do</ion-select-option>
+        <ion-select-option value="active">Active</ion-select-option>
         <ion-select-option value="complete">Complete</ion-select-option>
       </ion-select>
     </ion-item>
