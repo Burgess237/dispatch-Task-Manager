@@ -5,7 +5,7 @@
 export const environment = {
   production: false,
   firebaseConfig: {
-    apiKey: 'AIzaSyB6tp6MXS3e1HHIE2QrYMXgHwGwUM-N7to',
+    apiKey: '',
     authDomain: 'dispach-todo.firebaseapp.com',
     projectId: 'dispach-todo',
     storageBucket: 'dispach-todo.appspot.com',

@@ -29,7 +29,7 @@
     <preference name="AndroidXEnabled" value="false" />
     <preference name="JetifierEnabled" value="false" />
     <preference name="android-minSdkVersion" value="22" />
-    <preference name="GOOGLE_MAPS_ANDROID_API_KEY" value="AIzaSyB6tp6MXS3e1HHIE2QrYMXgHwGwUM-N7to" />
+    <preference name="GOOGLE_MAPS_ANDROID_API_KEY" value="-N7to" />
     <platform name="android">
         <edit-config file="app/src/main/AndroidManifest.xml" mode="merge" target="/manifest/application" xmlns:android="http://schemas.android.com/apk/res/android">
             <application android:networkSecurityConfig="@xml/network_security_config" />
