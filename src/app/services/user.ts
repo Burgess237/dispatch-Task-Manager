@@ -4,4 +4,7 @@ export interface User {
     displayName: string;
     photoURL: string;
     emailVerified: boolean;
+    location?: any;
+    lat?: any;
+    lng?: any;
  }

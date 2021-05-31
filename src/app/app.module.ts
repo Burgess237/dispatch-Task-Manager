@@ -7,11 +7,8 @@ import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MatAccordion, MatExpansionModule } from '@angular/material/expansion';
-import { MatFormFieldModule } from '@angular/material/form-field';
 import { AngularFireModule } from '@angular/fire';
 import { AngularFireAuthModule } from '@angular/fire/auth';
-import { AngularFireStorageModule } from '@angular/fire/storage';
 import { AngularFireDatabaseModule } from '@angular/fire/database';
 import {FCM} from 'cordova-plugin-fcm-with-dependecy-updated/ionic/ngx';
 import { environment } from '../environments/environment';
@@ -20,10 +17,15 @@ import { UpdateTaskComponent } from './home/update-task/update-task.component';
 import { CreateTaskComponent } from './home/create-task/create-task.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ViewTaskComponent } from './home/view-task/view-task.component';
-import { AngularFireAuthGuard, hasCustomClaim, redirectUnauthorizedTo, redirectLoggedInTo } from '@angular/fire/auth-guard';
+import { AngularFireAuthGuard } from '@angular/fire/auth-guard';
 import { FirebaseAuthentication } from '@ionic-native/firebase-authentication/ngx';
 import { GooglePlus } from '@ionic-native/google-plus/ngx';
 import { ServiceWorkerModule } from '@angular/service-worker';
+import { AgmCoreModule } from '@agm/core';
+
+import { Geolocation } from '@ionic-native/geolocation/ngx';
+import { NativeGeocoder } from '@ionic-native/native-geocoder/ngx';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [AppComponent, UpdateTaskComponent, CreateTaskComponent, ViewTaskComponent],
@@ -43,12 +45,21 @@ import { ServiceWorkerModule } from '@angular/service-worker';
       // Register the ServiceWorker as soon as the app is stable
       // or after 30 seconds (whichever comes first).
       registrationStrategy: 'registerWhenStable:30000'
-    })
+    }),
+    HttpClientModule
   ],
   exports: [
 
   ],
-  providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }, AngularFireAuthGuard, FirebaseAuthentication, GooglePlus, FCM],
+  providers: [
+    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
+    AngularFireAuthGuard,
+    FirebaseAuthentication,
+    GooglePlus,
+    FCM,
+    Geolocation,
+    NativeGeocoder,
+  ],
   bootstrap: [AppComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })

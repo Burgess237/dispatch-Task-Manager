@@ -7,6 +7,7 @@ import { Location } from '@angular/common';
 import { AuthService } from './services/auth.service';
 import { User } from './services/user';
 import { Router } from '@angular/router';
+import { GeolocationService } from './services/geolocation.service';
 
 @Component({
   selector: 'app-root',
@@ -23,15 +24,24 @@ export class AppComponent {
   public pushPayload: INotificationPayload;
 
 
-  constructor(public plt: Platform, public router: Router,
+  constructor(
+    public plt: Platform,
+    public router: Router,
     public menuController: MenuController,
     public alertController: AlertController,
-    public auth: AuthService) {
+    public auth: AuthService,
+    public geolocationService: GeolocationService
+    ) {
     this.plt.ready()
     .then(() => {
       console.log('App Ready');
       if(this.auth.isLoggedIn){
         this.currentUser = JSON.parse(localStorage.getItem('user'));
+        if(this.plt.is('android')) {
+         // this.backgroundGeolocationService.initGeolocation(this.currentUser);
+         // this.backgroundGeolocationService.startGeolocation();
+         this.geolocationService.watchPosition();
+        }
       }
     });
 
@@ -42,5 +52,6 @@ export class AppComponent {
     });
 
   }
+
 
 }

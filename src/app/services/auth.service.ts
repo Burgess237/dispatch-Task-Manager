@@ -26,10 +26,8 @@ export class AuthService {
     public toast: ToastController
 	){    // try login from localstore?
       this.firebaseLogin.auth.onAuthStateChanged(user => {
-        console.log(this.platform);
-        console.log('Auth Changed');
+        console.log(this.platform.platforms());
         if (user) {
-          console.log('Auth Changed - User exists: ' , user);
           this.userData = user;
           localStorage.setItem('user', JSON.stringify(this.userData));
           JSON.parse(localStorage.getItem('user'));
@@ -87,9 +85,7 @@ export class AuthService {
 
   // Auth providers
   authLogin() {
-    console.log('Auth Method');
     if(this.platform.is('cordova')) {
-      console.log('Login with cordova');
       return this.googlePlus.login({
         webClientID: '277060750108-ogquhi1bn51raslqtbpe1mrmqo00h5dv.apps.googleusercontent.com',
         offline: true,
@@ -101,7 +97,6 @@ export class AuthService {
 
             this.ngFireAuth.onAuthStateChanged().subscribe(user => {
               if (user) {
-                console.log('Auth Changed - User exists: ' , user);
                 this.userData = user;
                 localStorage.setItem('user', JSON.stringify(this.userData));
                 JSON.parse(localStorage.getItem('user'));
@@ -111,7 +106,6 @@ export class AuthService {
                 });
                 this.setUserData(user);
               } else {
-                console.log('Auth Changed - User Removed');
                 localStorage.setItem('user', null);
                 JSON.parse(localStorage.getItem('user'));
               }

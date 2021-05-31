@@ -28,6 +28,10 @@ const routes: Routes = [
   },  {
     path: 'archive',
     loadChildren: () => import('./archive/archive.module').then( m => m.ArchivePageModule)
+  },
+  {
+    path: 'map',
+    loadChildren: () => import('./map/map.module').then( m => m.MapPageModule)
   }
 
 

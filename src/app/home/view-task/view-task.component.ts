@@ -45,7 +45,7 @@ export class ViewTaskComponent implements OnInit {
   // Toast
   async presentCompleteToast(task) {
     const toast = await this.toast.create({
-      message: 'Task: ' + task.id + ' marked complete',
+      message: 'Task marked complete',
       buttons: [
         {
           side: 'end',

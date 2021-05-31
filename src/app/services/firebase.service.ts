@@ -2,13 +2,14 @@ import { Injectable } from '@angular/core';
 import { redirectLoggedInTo } from '@angular/fire/auth-guard';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { Task } from '../task';
+import { AuthService } from './auth.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class FirebaseService {
 
-  constructor(private firestore: AngularFirestore) { }
+  constructor(private firestore: AngularFirestore, private auth: AuthService) { }
 
 
 
@@ -40,6 +41,18 @@ export class FirebaseService {
 
   archivedTasks() {
     return this.firestore.collection('tasks', ref => ref.where('archived', '==', true)).snapshotChanges();
+  }
+
+  setUserLocation(user) {
+    return this.firestore.doc('users/' + user.uid).update(user);
+  }
+
+  getUserLocation(user) {
+    return this.firestore.doc('users/'+ user.uid).snapshotChanges();
+  }
+
+  getUsersForMap() {
+    return this.firestore.collection('users').snapshotChanges();
   }
 
 }
