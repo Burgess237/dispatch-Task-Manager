@@ -16,13 +16,14 @@
     width="100%"
     [center]="center"
     [zoom]="zoom"
-    [options]="options" #map>
-    <map-marker [position]="myMarker?.position" [options]="myMarker?.options" [title]="myMarker?.title" [label]="myMarker?.label"></map-marker>
+    [options]="options">
+    <map-marker [position]="myMarker?.position" [options]="myMarker?.options" [title]="myMarker?.title" [label]="myMarker?.label" [icon]="myMarker?.icon"></map-marker>
     <map-marker *ngFor="let marker of markers"
-    [position]="marker.position"
-    [options]="marker.options"
-    [title]="marker.title"
-    [label]="marker.label"
+    #markerElement
+    [position]="marker?.position"
+    [options]="marker?.options"
+    [label]="marker?.label"
+    (mapClick)="markerEvent(markerElement, marker)"
     ></map-marker></google-map>
 
 

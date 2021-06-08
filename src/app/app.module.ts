@@ -10,7 +10,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AngularFireModule } from '@angular/fire';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 import { AngularFireDatabaseModule } from '@angular/fire/database';
-import {FCM} from 'cordova-plugin-fcm-with-dependecy-updated/ionic/ngx';
 import { environment } from '../environments/environment';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { UpdateTaskComponent } from './home/update-task/update-task.component';
@@ -21,7 +20,6 @@ import { AngularFireAuthGuard } from '@angular/fire/auth-guard';
 import { FirebaseAuthentication } from '@ionic-native/firebase-authentication/ngx';
 import { GooglePlus } from '@ionic-native/google-plus/ngx';
 import { ServiceWorkerModule } from '@angular/service-worker';
-import { AgmCoreModule } from '@agm/core';
 
 import { Geolocation } from '@ionic-native/geolocation/ngx';
 import { NativeGeocoder } from '@ionic-native/native-geocoder/ngx';
@@ -56,7 +54,6 @@ import { HttpClientModule } from '@angular/common/http';
     AngularFireAuthGuard,
     FirebaseAuthentication,
     GooglePlus,
-    FCM,
     Geolocation,
     NativeGeocoder,
   ],

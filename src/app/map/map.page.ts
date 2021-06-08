@@ -28,6 +28,15 @@ export class MapPage implements OnInit {
   markers = [];
   liveposition: LocationObject;
   singleMarker: google.maps.Marker;
+  options: google.maps.MapOptions = {
+    zoomControl: true,
+    scrollwheel: true,
+    disableDoubleClickZoom: false,
+    maxZoom: 15,
+    minZoom: 8,
+    gestureHandling: 'auto',
+    streetViewControl: false
+  };
 
   constructor(
     private geolocation: Geolocation,
@@ -51,13 +60,14 @@ export class MapPage implements OnInit {
             lng: res.coords.longitude,
           },
           label: {
-            color: 'red',
+            color: 'blue',
             text: 'You Are here!',
           },
           title: 'You Are here!',
           info: 'You Are here!',
           options: {
             animation: google.maps.Animation.DROP,
+            icon: '<ion-icon name="car-outline"></ion-icon>'
           }
         };
       });
@@ -69,17 +79,16 @@ fetchUserLocations() {
     if(res){
       this.markers = res.map(e=> ( {
         position: {
-          lat: e.payload.doc.data().lat,
-          lng: e.payload.doc.data().lng,
+          lat: parseFloat(e.payload.doc.data().lat),
+          lng: parseFloat(e.payload.doc.data().lng),
         },
         label: {
           color: 'red',
-          text: 'Marker label ' + (this.markers.length + 1),
+          text: e.payload.doc.data().displayName,
         },
-        title: 'Marker title ' + (this.markers.length + 1),
-        info: 'Marker info ' + (this.markers.length + 1),
+
         options: {
-          animation: google.maps.Animation.DROP,
+          animation: google.maps.Animation.DROP
         }
       })
       );
@@ -89,7 +98,9 @@ fetchUserLocations() {
 
 
 
-
+markerEvent(e, marker) {
+  console.log(e, marker);
+}
 
 
 }
