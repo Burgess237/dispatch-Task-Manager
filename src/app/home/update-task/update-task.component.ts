@@ -14,6 +14,7 @@ export class UpdateTaskComponent implements OnInit {
 
   @Input() task: Task;
   currentTask;
+  usersList: any[];
 
   constructor(
     public firebaseService: FirebaseService,
@@ -36,6 +37,16 @@ export class UpdateTaskComponent implements OnInit {
       description: new FormControl(this.task.description),
       accountManager: new FormControl(this.task.accountManager, Validators.required)
     });
+
+    this.firebaseService.getUsers().subscribe((res: any) => {
+      console.log(res);
+      if(res) {
+        this.usersList = res.map(e => {
+          const data = e.payload.doc.data();
+          const id = e.payload.doc.id;
+          return {id, ...data};
+        });
+    }});
   }
 
   updateTask() {

@@ -22,20 +22,11 @@ export class CompletedTasksPage implements OnInit {
   fetchTasks(event?) {
     this.firestore.completedTasks().subscribe((res: any) => {
       if(res){
-        this.completedTasks = res.map(e=> ({
-          id: e.payload.doc.id,
-          taskName: e.payload.doc.data().taskName,
-          creationDate: e.payload.doc.data().creationDate,
-          dueDate: e.payload.doc.data().dueDate,
-          priority: e.payload.doc.data().priority,
-          status: e.payload.doc.data().status,
-          collectFrom: e.payload.doc.data().collectFrom,
-          deliverTo: e.payload.doc.data().deliverTo,
-          collectLocation: e.payload.doc.data().collectLocation,
-          deliverLocation: e.payload.doc.data().deliverLocation,
-          description: e.payload.doc.data().description,
-          archived: e.payload.doc.data().archived
-        }));
+        this.completedTasks = res.map(e => {
+          const data = e.payload.doc.data();
+          const id = e.payload.doc.id;
+          return {id, ...data};
+        });
           if(event) {
             event.target.complete();
           }

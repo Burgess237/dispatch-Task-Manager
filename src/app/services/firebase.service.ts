@@ -51,8 +51,8 @@ export class FirebaseService {
     return this.firestore.doc('users/'+ user.uid).snapshotChanges();
   }
 
-  getUsersForMap() {
-    return this.firestore.collection('users').snapshotChanges();
+  getUsers() {
+    return this.firestore.collection('users', ref => ref.orderBy('displayName')).snapshotChanges();
   }
 
 }

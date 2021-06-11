@@ -75,7 +75,7 @@ export class MapPage implements OnInit {
 }
 
 fetchUserLocations() {
-  this.firebaseService.getUsersForMap().subscribe((res: any) => {
+  this.firebaseService.getUsers().subscribe((res: any) => {
     if(res){
       this.markers = res.map(e=> ( {
         position: {

@@ -17,6 +17,8 @@ export class CreateTaskComponent implements OnInit {
   date = new Date();
   currentDate: string;
 
+  usersList: any[];
+
   constructor(public modalController: ModalController, public firebaseService: FirebaseService, public auth: AuthService) {
     this.currentDate = this.date.toISOString();
    }
@@ -38,6 +40,21 @@ export class CreateTaskComponent implements OnInit {
       accountManager: new FormControl('', Validators.required),
     });
 
+    this.firebaseService.getUsers().subscribe((res: any) => {
+      console.log(res);
+      if(res) {
+        this.usersList = res.map(e => {
+          const data = e.payload.doc.data();
+          const id = e.payload.doc.id;
+          return {id, ...data};
+        });
+    }});
+    /*this.firebaseService.getUsers().pipe(map(actions.map(e => {
+      const data = e.payload.doc.data();
+      const id = e.payload.doc.id;
+      return {id, ...data};
+    })));
+*/
   }
 
   dismiss() {
