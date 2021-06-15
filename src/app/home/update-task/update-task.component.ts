@@ -39,11 +39,11 @@ export class UpdateTaskComponent implements OnInit {
     });
 
     this.firebaseService.getUsers().subscribe((res: any) => {
-      console.log(res);
       if(res) {
         this.usersList = res.map(e => {
           const data = e.payload.doc.data();
           const id = e.payload.doc.id;
+          data.id = id;
           return {id, ...data};
         });
     }});
@@ -52,8 +52,6 @@ export class UpdateTaskComponent implements OnInit {
   updateTask() {
     const taskToUpdate = this.currentTask.value;
     taskToUpdate.lastEditedBy = this.auth.userData.displayName;
-    console.log(this.currentTask);
-    console.log(taskToUpdate);
     this.firebaseService.updateTask(taskToUpdate).then(() => {
       this.presentCompleteToast(taskToUpdate);
     });

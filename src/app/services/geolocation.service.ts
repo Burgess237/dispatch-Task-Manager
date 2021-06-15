@@ -28,14 +28,13 @@ export class GeolocationService {
   watchPosition() {
     this.geolocation.watchPosition().subscribe((data: Geoposition) => {
       if(data) {
-        console.log(data);
       this.currentPosition.lat = data.coords.latitude;
       this.currentPosition.lng = data.coords.longitude;
       const user = JSON.parse(localStorage.getItem('user'));
       user.lat = this.currentPosition.lat;
       user.lng = this.currentPosition.lng;
       localStorage.setItem('user', JSON.stringify(user));
-      this.firestore.setUserLocation(user).then(() => console.log('user update with latlng'));
+      this.firestore.setUserLocation(user);
       }
     });
   }

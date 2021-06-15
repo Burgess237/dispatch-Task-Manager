@@ -43,8 +43,9 @@ export class HomePage implements OnInit {
     this.firebaseService.tasksInDueDateOrder().subscribe((res: any) => {
       if(res){
         this.tasks = res.map(e => {
-          const data = e.payload.doc.data();
           const id = e.payload.doc.id;
+          const data = e.payload.doc.data();
+          data.id = id;
           return {id, ...data};
         });
       }
@@ -87,7 +88,7 @@ export class HomePage implements OnInit {
     return await modal.present();
   }
 
-  async viewTaskModel(currentTask) {
+  async viewTaskModel(currentTask: Task) {
     const modal = await this.modalController.create({
       component: ViewTaskComponent,
       cssClass: 'view-task-modal',

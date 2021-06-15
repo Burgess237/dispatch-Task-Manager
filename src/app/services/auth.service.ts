@@ -26,13 +26,11 @@ export class AuthService {
     public toast: ToastController
 	){    // try login from localstore?
       this.firebaseLogin.auth.onAuthStateChanged(user => {
-        console.log(this.platform.platforms());
         if (user) {
           this.userData = user;
           localStorage.setItem('user', JSON.stringify(this.userData));
           JSON.parse(localStorage.getItem('user'));
         } else {
-          console.log('Purging user from local storage');
           localStorage.setItem('user', null);
           JSON.parse(localStorage.getItem('user'));
         }
@@ -47,7 +45,11 @@ export class AuthService {
   }
 
   registerUser(email, password) {
-    return this.ngFireAuth.createUserWithEmailAndPassword(email, password);
+    if(this.platform.is('cordova')) {
+      return this.ngFireAuth.createUserWithEmailAndPassword(email, password);
+    } else {
+      return this.firebaseLogin.auth.createUserWithEmailAndPassword(email,password);
+    }
   }
 
   sendVerificationEmail() {
@@ -114,7 +116,6 @@ export class AuthService {
         }
       );
     } else {
-      console.log('Login without cordova');
       return this.firebaseLogin.auth.signInWithPopup(new auth.GoogleAuthProvider())
       .then((result) => {
          this.ngZone.run(() => {
@@ -145,10 +146,19 @@ export class AuthService {
 
   // Sign-out
   signOut() {
-    return this.ngFireAuth.signOut().then(() => {
-      localStorage.removeItem('user');
-      this.router.navigate(['login']);
-    });
+    if(this.platform.is('cordova')) {
+      // do cordova things
+      return this.googlePlus.logout().then((res) => {
+        console.log(res);
+        this.ngFireAuth.signOut();
+        localStorage.removeItem('user');
+        this.router.navigate(['login']);
+      });
+    } else {
+        return this.firebaseLogin.auth.signOut().then(() => {
+          localStorage.removeItem('user');
+          this.router.navigate(['login']);
+        });
+      }
+    }
   }
-
-}

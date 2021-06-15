@@ -32,6 +32,7 @@
     <ion-item lines="full">
       <ion-label>Account Manager</ion-label>
       <ion-select type="text" formControlName="accountManager" placeholder="Select Account Manager">
+        <ion-select-option value="{{task.accountManager}}">{{task.accountManager}}</ion-select-option>
         <ion-select-option *ngFor="let user of usersList" value="{{user.displayName}}">{{user.displayName}}</ion-select-option>
       </ion-select>
     </ion-item>

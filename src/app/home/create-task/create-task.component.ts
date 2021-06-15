@@ -26,7 +26,6 @@ export class CreateTaskComponent implements OnInit {
 
   ngOnInit() {
     this.createdTask = new FormGroup({
-      id: new FormControl(''),
       taskName: new FormControl('', Validators.required),
       creationDate: new FormControl({value: this.currentDate, disabled: true}, Validators.required),
       dueDate: new FormControl('', Validators.required),
@@ -46,6 +45,7 @@ export class CreateTaskComponent implements OnInit {
         this.usersList = res.map(e => {
           const data = e.payload.doc.data();
           const id = e.payload.doc.id;
+          data.id = id;
           return {id, ...data};
         });
     }});
@@ -71,7 +71,6 @@ export class CreateTaskComponent implements OnInit {
     createdTaskObject.lastEditedBy = this.auth.userData.displayName;
     createdTaskObject.archived = false;
     createdTaskObject.creationDate = this.currentDate;
-    console.log(createdTaskObject);
     this.firebaseService.createTask(createdTaskObject).then(res=> {
       this.dismiss();
     });

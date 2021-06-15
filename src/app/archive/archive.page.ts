@@ -29,6 +29,7 @@ export class ArchivePage implements OnInit {
         this.archivedTasks = res.map(e => {
           const data = e.payload.doc.data();
           const id = e.payload.doc.id;
+          data.id = id;
           return {id, ...data};
         });
           if(event) {

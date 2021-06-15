@@ -20,7 +20,6 @@ export class ViewTaskComponent implements OnInit {
     public toast: ToastController) { }
 
   ngOnInit() {
-    console.log(this.task);
   }
 
   dismiss() {
