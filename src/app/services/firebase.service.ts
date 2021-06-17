@@ -30,7 +30,7 @@ export class FirebaseService {
   }
 
   tasksInDueDateOrder() {
-    return this.firestore.collection('tasks', ref => ref.orderBy('dueDate')).snapshotChanges();
+    return this.firestore.collection('tasks', ref => ref.orderBy('dueDate').where('status', '==', 'active')).snapshotChanges();
   }
 
   completedTasks() {

@@ -1,8 +1,6 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
-import { AuthService } from '../services/auth.service';
 import { FirebaseService } from '../services/firebase.service';
 import { GeolocationService, LocationObject } from '../services/geolocation.service';
-import { User } from '../services/user';
 import { Geolocation, Geoposition } from '@ionic-native/geolocation/ngx';
 import { NativeGeocoder} from '@ionic-native/native-geocoder/ngx';
 import { Platform } from '@ionic/angular';

@@ -48,6 +48,7 @@ export class HomePage implements OnInit {
           data.id = id;
           return {id, ...data};
         });
+        console.log(this.tasks);
       }
       this.removeComplete();
       if(event) {
@@ -136,6 +137,7 @@ export class HomePage implements OnInit {
     await toast.present();
 
   }
+
 
 
 }

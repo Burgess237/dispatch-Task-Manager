@@ -1,7 +1,5 @@
 import { Component } from '@angular/core';
 import { AlertController, MenuController, Platform } from '@ionic/angular';
-import { FCM } from 'cordova-plugin-fcm-with-dependecy-updated/ionic/ngx';
-import { INotificationPayload } from 'cordova-plugin-fcm-with-dependecy-updated/typings/INotificationPayload';
 
 import { Location } from '@angular/common';
 import { AuthService } from './services/auth.service';
@@ -21,7 +19,6 @@ export class AppComponent {
 
   public hasPermission: boolean;
   public token: string;
-  public pushPayload: INotificationPayload;
 
 
   constructor(
