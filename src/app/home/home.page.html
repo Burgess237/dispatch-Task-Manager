@@ -4,10 +4,18 @@
       <ion-menu-button autoHide="true"></ion-menu-button>
     </ion-buttons>
     <ion-title>Home</ion-title>
+    
   </ion-toolbar>
 </ion-header>
 
 <ion-content fullscreen="true">
+    <ion-item lines="full">
+      <ion-label>Account Manager Filter</ion-label>
+      <ion-select type="text" placeholder="Select Account Manager" (ionChange)="filterAccountManager($event)">
+        <ion-select-option value="">All</ion-select-option>
+        <ion-select-option *ngFor="let user of usersList" value="{{user.displayName}}">{{user.displayName}}</ion-select-option>
+      </ion-select>
+    </ion-item>
   <ion-refresher slot="fixed" (ionRefresh)="fetchTasks($event)">
     <ion-refresher-content>
       

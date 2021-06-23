@@ -34,11 +34,7 @@ export class AppComponent {
       console.log('App Ready');
       if(this.auth.isLoggedIn){
         this.currentUser = JSON.parse(localStorage.getItem('user'));
-        if(this.plt.is('android')) {
-         // this.backgroundGeolocationService.initGeolocation(this.currentUser);
-         // this.backgroundGeolocationService.startGeolocation();
          this.geolocationService.watchPosition();
-        }
       }
     });
 

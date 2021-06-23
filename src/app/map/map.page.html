@@ -12,7 +12,7 @@
 <ion-content [fullscreen]="true">
 
   
-    <google-map height="80vh"
+    <google-map height="94vh"
     width="100%"
     [center]="center"
     [zoom]="zoom"
@@ -22,9 +22,9 @@
     #markerElement
     [position]="marker?.position"
     [options]="marker?.options"
-    [label]="marker?.label"
-    (mapClick)="markerEvent(markerElement, marker)"
-    ></map-marker></google-map>
+    [title]="marker?.title"
+    (mapClick)="markerEvent(markerElement, marker)">
+  </map-marker></google-map>
 
 
 </ion-content>

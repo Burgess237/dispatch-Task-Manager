@@ -8,6 +8,13 @@
 </ion-header>
 
 <ion-content>
+  <ion-item lines="full">
+    <ion-label>Account Manager Filter</ion-label>
+    <ion-select type="text" placeholder="Select Account Manager" (ionChange)="filterAccountManager($event)">
+      <ion-select-option value="">All</ion-select-option>
+      <ion-select-option *ngFor="let user of usersList" value="{{user.displayName}}">{{user.displayName}}</ion-select-option>
+    </ion-select>
+  </ion-item>
   <ion-refresher slot="fixed" (ionRefresh)="fetchTasks($event)">
     <ion-refresher-content>
       

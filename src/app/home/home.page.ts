@@ -11,6 +11,7 @@ import { ViewTaskComponent } from './view-task/view-task.component';
 import { Observable, of } from 'rxjs';
 import * as firebase from 'firebase';
 import { Router } from '@angular/router';
+import { User } from '../services/user';
 
 @Component({
   selector: 'app-home',
@@ -22,6 +23,7 @@ export class HomePage implements OnInit {
   tasks: Task[] = [];
   taskBackup: Task[] = [];
   filtered: Task[] = [];
+  usersList: User[];
   currentUser;
   constructor(
     private firebaseService: FirebaseService,
@@ -37,6 +39,7 @@ export class HomePage implements OnInit {
     // Fetch tasks from firebase
     this.fetchTasks();
     this.currentUser = JSON.parse(localStorage.getItem('user'));
+    this.fetchUsers();
   }
 
   fetchTasks(event?) {
@@ -48,17 +51,24 @@ export class HomePage implements OnInit {
           data.id = id;
           return {id, ...data};
         });
-        console.log(this.tasks);
       }
-      this.removeComplete();
       if(event) {
         event.target.complete();
       }
     });
   }
 
-  removeComplete() {
-    this.tasks = this.tasks.filter(task => task.status !== 'complete');
+  fetchUsers() {
+    this.firebaseService.getUsers().subscribe((res: any) => {
+      console.log(res);
+      if(res) {
+        this.usersList = res.map(e => {
+          const data = e.payload.doc.data();
+          const id = e.payload.doc.id;
+          data.id = id;
+          return {id, ...data};
+        });
+    }});
   }
 
   async presentModal() {
@@ -136,6 +146,15 @@ export class HomePage implements OnInit {
     });
     await toast.present();
 
+  }
+
+  filterAccountManager(event) {
+    const ac = event.detail.value;
+    if(ac) {
+      this.tasks = this.tasks.filter(s => s.accountManager === ac);
+    } else {
+      this.fetchTasks();
+    }
   }
 
 

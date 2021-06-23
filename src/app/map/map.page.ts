@@ -1,15 +1,12 @@
-import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { FirebaseService } from '../services/firebase.service';
 import { GeolocationService, LocationObject } from '../services/geolocation.service';
 import { Geolocation, Geoposition } from '@ionic-native/geolocation/ngx';
-import { NativeGeocoder} from '@ionic-native/native-geocoder/ngx';
 import { Platform } from '@ionic/angular';
 import { HttpClient } from '@angular/common/http';
 import { MapInfoWindow, MapMarker, GoogleMap } from '@angular/google-maps';
 
-
 declare let google;
-
 
 @Component({
   selector: 'app-map',
@@ -29,16 +26,14 @@ export class MapPage implements OnInit {
   options: google.maps.MapOptions = {
     zoomControl: true,
     scrollwheel: true,
-    disableDoubleClickZoom: false,
+    disableDoubleClickZoom: true,
     maxZoom: 15,
     minZoom: 8,
     gestureHandling: 'auto',
-    streetViewControl: false
-  };
+    streetViewControl: false  };
 
   constructor(
     private geolocation: Geolocation,
-    private nativeGeocoder: NativeGeocoder,
     private platform: Platform,
     public geolocationService: GeolocationService,
     public firebaseService: FirebaseService,
@@ -65,7 +60,13 @@ export class MapPage implements OnInit {
           info: 'You Are here!',
           options: {
             animation: google.maps.Animation.DROP,
-            icon: '<ion-icon name="car-outline"></ion-icon>'
+            icon: {
+              url: '../assets/location-outline.svg',
+              scaledSize: {
+                height: 40,
+                width: 40
+              }
+            },
           }
         };
       });
@@ -80,21 +81,23 @@ fetchUserLocations() {
           lat: parseFloat(e.payload.doc.data().lat),
           lng: parseFloat(e.payload.doc.data().lng),
         },
-        label: {
-          color: 'red',
-          text: e.payload.doc.data().displayName,
-        },
-
+        title: e.payload.doc.data().displayName,
         options: {
-          animation: google.maps.Animation.DROP
+          animation: google.maps.Animation.DROP,
+          icon: {
+            url: '../assets/man-outline.svg',
+            scaledSize:
+            {
+              height: 35,
+              width: 35
+            }
+          }
         }
       })
       );
     }
   });
 }
-
-
 
 markerEvent(e, marker) {
   console.log(e, marker);

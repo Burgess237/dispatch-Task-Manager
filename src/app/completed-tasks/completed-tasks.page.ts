@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ModalController, ToastController } from '@ionic/angular';
 import { UpdateTaskComponent } from '../home/update-task/update-task.component';
 import { FirebaseService } from '../services/firebase.service';
+import { User } from '../services/user';
 import { Task } from '../task';
 
 @Component({
@@ -12,11 +13,13 @@ import { Task } from '../task';
 export class CompletedTasksPage implements OnInit {
 
   completedTasks: Task[] = [];
+  usersList: User[];
 
   constructor(public toastController: ToastController ,public firestore: FirebaseService, public modalController: ModalController) { }
 
   ngOnInit() {
     this.fetchTasks();
+    this.fetchUsers();
   }
 
   fetchTasks(event?) {
@@ -63,6 +66,28 @@ export class CompletedTasksPage implements OnInit {
     });
 
     return await toast.present();
+  }
+
+  fetchUsers() {
+    this.firestore.getUsers().subscribe((res: any) => {
+      console.log(res);
+      if(res) {
+        this.usersList = res.map(e => {
+          const data = e.payload.doc.data();
+          const id = e.payload.doc.id;
+          data.id = id;
+          return {id, ...data};
+        });
+    }});
+  }
+
+  filterAccountManager(event) {
+    const ac = event.detail.value;
+    if(ac) {
+      this.completedTasks = this.completedTasks.filter(s => s.accountManager === ac);
+    } else {
+      this.fetchTasks();
+    }
   }
 
 }
