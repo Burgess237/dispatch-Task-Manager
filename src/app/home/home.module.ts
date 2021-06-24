@@ -12,6 +12,7 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 
 
 import { HomePage } from './home.page';
+import { FilterPipe } from '../filter.pipe';
 
 @NgModule({
   imports: [
@@ -22,6 +23,6 @@ import { HomePage } from './home.page';
     MatExpansionModule,
     MatFormFieldModule,
   ],
-  declarations: [HomePage]
+  declarations: [HomePage, FilterPipe]
 })
 export class HomePageModule {}

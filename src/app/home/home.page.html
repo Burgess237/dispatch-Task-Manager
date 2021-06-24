@@ -11,7 +11,7 @@
 <ion-content fullscreen="true">
     <ion-item lines="full">
       <ion-label>Account Manager Filter</ion-label>
-      <ion-select type="text" placeholder="Select Account Manager" (ionChange)="filterAccountManager($event)">
+      <ion-select (ionChange)="filterAccountManager($event)" type="text" placeholder="Select Account Manager">
         <ion-select-option value="">All</ion-select-option>
         <ion-select-option *ngFor="let user of usersList" value="{{user.displayName}}">{{user.displayName}}</ion-select-option>
       </ion-select>
@@ -23,7 +23,7 @@
   </ion-refresher>
         <ion-list>
         <!-- Multi-line sliding item with icon options on both sides -->
-        <ion-item-sliding *ngFor="let task of tasks">
+        <ion-item-sliding *ngFor="let task of tasks | filter: accountManagerSearch">
             <ion-item detail="true" (click)="viewTaskModel(task)">
               <ion-label class="ion-text-wrap">
                 <h2>{{task.taskName}}</h2>

@@ -25,6 +25,7 @@ export class HomePage implements OnInit {
   filtered: Task[] = [];
   usersList: User[];
   currentUser;
+  accountManagerSearch;
   constructor(
     private firebaseService: FirebaseService,
     public modalController: ModalController,
@@ -149,12 +150,7 @@ export class HomePage implements OnInit {
   }
 
   filterAccountManager(event) {
-    const ac = event.detail.value;
-    if(ac) {
-      this.tasks = this.tasks.filter(s => s.accountManager === ac);
-    } else {
-      this.fetchTasks();
-    }
+    this.accountManagerSearch = event.detail.value;
   }
 
 
