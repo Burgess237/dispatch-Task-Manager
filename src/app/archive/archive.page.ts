@@ -15,6 +15,8 @@ export class ArchivePage implements OnInit {
 
   archivedTasks: Task[] = [];
   usersList: User[];
+  accountManagerSearch;
+
   constructor(
     public firestore: FirebaseService,
     public modalController: ModalController,
@@ -86,11 +88,6 @@ export class ArchivePage implements OnInit {
   }
 
   filterAccountManager(event) {
-    const ac = event.detail.value;
-    if(ac) {
-      this.archivedTasks = this.archivedTasks.filter(s => s.accountManager === ac);
-    } else {
-      this.fetchTasks();
-    }
+    this.accountManagerSearch = event.detail.value;
   }
 }

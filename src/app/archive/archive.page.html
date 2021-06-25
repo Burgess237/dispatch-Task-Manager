@@ -11,7 +11,7 @@
     <ion-content>
       <ion-item lines="full">
         <ion-label>Account Manager Filter</ion-label>
-        <ion-select type="text" placeholder="Select Account Manager" (ionChange)="filterAccountManager($event)">
+        <ion-select (ionChange)="filterAccountManager($event)" type="text" placeholder="Select Account Manager">
           <ion-select-option value="">All</ion-select-option>
           <ion-select-option *ngFor="let user of usersList" value="{{user.displayName}}">{{user.displayName}}</ion-select-option>
         </ion-select>
@@ -22,7 +22,7 @@
         </ion-refresher-content>
       </ion-refresher>
     <ion-list>
-      <ion-item *ngFor="let task of archivedTasks" >
+      <ion-item *ngFor="let task of archivedTasks | filter: accountManagerSearch" >
         <ion-item (click)="openCompletedTask(task)" lines="none">
           <ion-label class="ion-text-wrap">
             {{task.taskName}}

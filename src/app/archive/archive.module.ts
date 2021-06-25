@@ -7,6 +7,7 @@ import { IonicModule } from '@ionic/angular';
 import { ArchivePageRoutingModule } from './archive-routing.module';
 
 import { ArchivePage } from './archive.page';
+import { FilterPipe } from '../filter.pipe';
 
 @NgModule({
   imports: [
@@ -15,6 +16,6 @@ import { ArchivePage } from './archive.page';
     IonicModule,
     ArchivePageRoutingModule
   ],
-  declarations: [ArchivePage]
+  declarations: [ArchivePage, FilterPipe]
 })
 export class ArchivePageModule {}

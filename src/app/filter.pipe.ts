@@ -7,9 +7,12 @@ import { Task } from './task';
 export class FilterPipe implements PipeTransform {
 
   transform(tasks: Task[], filterVal: string): any {
-    if(!tasks) {return [];}
-    if(!filterVal) { return tasks;}
-    console.log(tasks, filterVal);
+    if(!tasks) {
+      return [];
+    }
+    if(!filterVal) {
+      return tasks;
+    }
 
   return tasks = tasks.filter(s => s.accountManager === filterVal);
   }

@@ -14,7 +14,7 @@ export class CompletedTasksPage implements OnInit {
 
   completedTasks: Task[] = [];
   usersList: User[];
-
+  accountManagerSearch;
   constructor(public toastController: ToastController ,public firestore: FirebaseService, public modalController: ModalController) { }
 
   ngOnInit() {
@@ -82,12 +82,7 @@ export class CompletedTasksPage implements OnInit {
   }
 
   filterAccountManager(event) {
-    const ac = event.detail.value;
-    if(ac) {
-      this.completedTasks = this.completedTasks.filter(s => s.accountManager === ac);
-    } else {
-      this.fetchTasks();
-    }
+    this.accountManagerSearch = event.detail.value;
   }
 
 }
