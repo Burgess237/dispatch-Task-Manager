@@ -7,15 +7,16 @@ import { IonicModule } from '@ionic/angular';
 import { CompletedTasksPageRoutingModule } from './completed-tasks-routing.module';
 
 import { CompletedTasksPage } from './completed-tasks.page';
-import { FilterPipe } from '../filter.pipe';
+import { ApplicationPipesModule } from '../application-pipes.module';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    CompletedTasksPageRoutingModule
+    CompletedTasksPageRoutingModule,
+    ApplicationPipesModule
   ],
-  declarations: [CompletedTasksPage, FilterPipe]
+  declarations: [CompletedTasksPage]
 })
 export class CompletedTasksPageModule {}

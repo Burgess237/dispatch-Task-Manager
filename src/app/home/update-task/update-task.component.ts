@@ -35,7 +35,7 @@ export class UpdateTaskComponent implements OnInit {
       deliverTo: new FormControl(this.task.deliverTo, Validators.required),
       deliverLocation: new FormControl(this.task.deliverLocation),
       description: new FormControl(this.task.description),
-      accountManager: new FormControl(this.task.accountManager, Validators.required)
+      accountManager: new FormControl(this.task.accountManager, Validators.required),
     });
 
     this.firebaseService.getUsers().subscribe((res: any) => {

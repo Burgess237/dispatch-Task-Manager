@@ -75,7 +75,11 @@
       </ion-select>
     </ion-item>
 
-    
+    <ion-item>
+      <input type="file" formControlName="file" (change)="handleFileChange($event)">
+    </ion-item>
+    <a class="view-btn-attach" [href]="selectedFileBLOB" target="_blank" *ngIf="selectedFileBLOB">View</a>
+    <ion-progress-bar [value]="uploadProgress | async"></ion-progress-bar>
 
     <ion-row class="button-row">
       <ion-col> 

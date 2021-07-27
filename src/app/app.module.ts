@@ -24,6 +24,9 @@ import { ServiceWorkerModule } from '@angular/service-worker';
 import { Geolocation } from '@ionic-native/geolocation/ngx';
 import { NativeGeocoder } from '@ionic-native/native-geocoder/ngx';
 import { HttpClientModule } from '@angular/common/http';
+import { ApplicationPipesModule } from './application-pipes.module';
+import { AngularFireStorageModule } from '@angular/fire/storage';
+import { FileChooser } from '@ionic-native/file-chooser/ngx';
 
 @NgModule({
   declarations: [AppComponent, UpdateTaskComponent, CreateTaskComponent, ViewTaskComponent],
@@ -31,11 +34,13 @@ import { HttpClientModule } from '@angular/common/http';
   imports: [
     BrowserModule,
     IonicModule.forRoot(),
+    ApplicationPipesModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFireAuthModule,
     AngularFireDatabaseModule,
+    AngularFireStorageModule,
     AngularFirestoreModule,
     ReactiveFormsModule,
     ServiceWorkerModule.register('ngsw-worker.js', {
@@ -53,6 +58,7 @@ import { HttpClientModule } from '@angular/common/http';
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
     AngularFireAuthGuard,
     FirebaseAuthentication,
+    FileChooser,
     GooglePlus,
     Geolocation,
     NativeGeocoder,

@@ -14,6 +14,8 @@ export class Task {
     lastEditedBy: string;
     archived: boolean;
     accountManager: string;
+    file: string;
+    fileName: string;
 }
 
 export class AccountManager {
@@ -21,3 +23,14 @@ export class AccountManager {
     id: number;
     contactNumber: number;
 }
+
+export class FileUpload {
+    key: string;
+    name: string;
+    url: string;
+    file: File;
+
+    constructor(file: File) {
+      this.file = file;
+    }
+  }

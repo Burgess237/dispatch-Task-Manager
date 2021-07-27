@@ -61,7 +61,6 @@ export class HomePage implements OnInit {
 
   fetchUsers() {
     this.firebaseService.getUsers().subscribe((res: any) => {
-      console.log(res);
       if(res) {
         this.usersList = res.map(e => {
           const data = e.payload.doc.data();

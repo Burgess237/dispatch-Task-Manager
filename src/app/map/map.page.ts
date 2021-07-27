@@ -15,22 +15,24 @@ declare let google;
 })
 export class MapPage implements OnInit {
   @ViewChild(GoogleMap, { static: false }) map: GoogleMap;
-
+  @ViewChild(MapInfoWindow, { static: false }) infoWindow: MapInfoWindow;
+  infoContent = '';
 
   center: google.maps.LatLngLiteral = {lat: -29.772107899999998, lng: 30.999091999999997};
-  zoom = 7;
+  zoom = 12;
   myMarker;
   markers = [];
   liveposition: LocationObject;
   singleMarker: google.maps.Marker;
   options: google.maps.MapOptions = {
-    zoomControl: true,
+    zoomControl: false,
     scrollwheel: true,
-    disableDoubleClickZoom: true,
+    disableDoubleClickZoom: false,
     maxZoom: 15,
-    minZoom: 8,
+    minZoom: 1,
     gestureHandling: 'auto',
-    streetViewControl: false  };
+    streetViewControl: false,
+    mapTypeControl: false  };
 
   constructor(
     private geolocation: Geolocation,
@@ -52,19 +54,12 @@ export class MapPage implements OnInit {
             lat: res.coords.latitude,
             lng: res.coords.longitude,
           },
-          label: {
-            color: 'blue',
-            text: 'You Are here!',
-          },
-          title: 'You Are here!',
-          info: 'You Are here!',
           options: {
-            animation: google.maps.Animation.DROP,
             icon: {
-              url: '../assets/location-outline.svg',
+              url: '../assets/location02.svg',
               scaledSize: {
-                height: 40,
-                width: 40
+                height: 50,
+                width: 50
               }
             },
           }
@@ -83,9 +78,8 @@ fetchUserLocations() {
         },
         title: e.payload.doc.data().displayName,
         options: {
-          animation: google.maps.Animation.DROP,
           icon: {
-            url: '../assets/man-outline.svg',
+            url: '../assets/location01.svg',
             scaledSize:
             {
               height: 35,
@@ -99,8 +93,17 @@ fetchUserLocations() {
   });
 }
 
+mapClick(event) {
+  console.log(event);
+}
+
 markerEvent(e, marker) {
   console.log(e, marker);
+}
+
+openInfo(marker, content) {
+    this.infoContent = content;
+    this.infoWindow.open(marker);
 }
 
 

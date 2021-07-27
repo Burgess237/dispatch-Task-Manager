@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { ApplicationInitStatus, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
@@ -9,10 +9,8 @@ import { HomePageRoutingModule } from './home-routing.module';
 import { MatAccordion, MatExpansionModule } from '@angular/material/expansion';
 import {MatFormFieldModule} from '@angular/material/form-field';
 
-
-
 import { HomePage } from './home.page';
-import { FilterPipe } from '../filter.pipe';
+import { ApplicationPipesModule } from '../application-pipes.module';
 
 @NgModule({
   imports: [
@@ -22,7 +20,8 @@ import { FilterPipe } from '../filter.pipe';
     HomePageRoutingModule,
     MatExpansionModule,
     MatFormFieldModule,
+    ApplicationPipesModule
   ],
-  declarations: [HomePage, FilterPipe]
+  declarations: [HomePage]
 })
 export class HomePageModule {}

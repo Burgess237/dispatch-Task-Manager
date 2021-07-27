@@ -4,7 +4,7 @@
     <ion-buttons slot="start">
       <ion-menu-button autoHide="true"></ion-menu-button>
     </ion-buttons>
-    <ion-title>Google Map</ion-title>
+    <ion-title>Map of Jimbuians</ion-title>
   </ion-toolbar>
 
 </ion-header>
@@ -12,19 +12,23 @@
 <ion-content [fullscreen]="true">
 
   
-    <google-map height="94vh"
+    <google-map height="100%"
     width="100%"
     [center]="center"
     [zoom]="zoom"
-    [options]="options">
-    <map-marker [position]="myMarker?.position" [options]="myMarker?.options" [title]="myMarker?.title" [label]="myMarker?.label" [icon]="myMarker?.icon"></map-marker>
+    [options]="options" (mapClick)="mapClick($event)"
+    >
+    <map-marker [position]="myMarker?.position" [options]="myMarker?.options" [icon]="myMarker?.icon"></map-marker>
     <map-marker *ngFor="let marker of markers"
-    #markerElement
+    #markerElement="mapMarker"
     [position]="marker?.position"
     [options]="marker?.options"
     [title]="marker?.title"
-    (mapClick)="markerEvent(markerElement, marker)">
-  </map-marker></google-map>
+    (mapClick)="openInfo(markerElement, marker.title)">
+  </map-marker>
+  <map-traffic-layer [autoRefresh]="false"></map-traffic-layer>
+  <map-info-window>{{ infoContent }}</map-info-window>
+</google-map>
 
 
 </ion-content>

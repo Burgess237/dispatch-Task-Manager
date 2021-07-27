@@ -63,6 +63,12 @@
         <h2 *ngIf="task.status==='active'" class="active">{{task.status | titlecase}}</h2>
       </ion-label>
     </ion-item>
+    <ion-item>
+      <ion-label>
+        <p>Attachment</p>
+        <a href="{{task.file}}">{{task.fileName}}</a>
+      </ion-label>
+    </ion-item>
   </ion-list>
   <ion-grid>
     <ion-row>
