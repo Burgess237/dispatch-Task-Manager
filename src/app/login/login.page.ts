@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { Platform } from '@ionic/angular';
+import { MenuController, Platform } from '@ionic/angular';
+import { AppComponent } from '../app.component';
 import { AuthService } from '../services/auth.service';
 
 @Component({
@@ -10,9 +11,13 @@ import { AuthService } from '../services/auth.service';
 })
 export class LoginPage implements OnInit {
 
-  constructor(public authService: AuthService, public router: Router, private platform: Platform) { }
+  constructor(public authService: AuthService, public router: Router, private platform: Platform, private menu: MenuController) { }
 
   ngOnInit() {
+  }
+
+  ionViewWillEnter() {
+    this.menu.enable(false);
   }
 
   logIn(email, password) {

@@ -80,11 +80,12 @@
       </ion-label>
     </ion-item>
     
-      <ion-item *ngIf="!task.file">
-        <ion-label>Add Attachment</ion-label>
-        <input type="file" formControlName="file">
-      </ion-item>
-   
+    <ion-item *ngIf="!task.file">
+      <ion-label>
+        <p>Add Attachment</p>
+      </ion-label>
+      <input type="file" formControlName="file">
+    </ion-item>
 
     <ion-row class="button-row">
       <ion-col> 

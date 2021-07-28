@@ -4,7 +4,7 @@ import { AlertController, MenuController, Platform } from '@ionic/angular';
 import { Location } from '@angular/common';
 import { AuthService } from './services/auth.service';
 import { User } from './services/user';
-import { Router } from '@angular/router';
+import { NavigationEnd, Router, RouterEvent } from '@angular/router';
 import { GeolocationService } from './services/geolocation.service';
 
 @Component({
@@ -19,8 +19,6 @@ export class AppComponent {
 
   public hasPermission: boolean;
   public token: string;
-
-
   constructor(
     public plt: Platform,
     public router: Router,
@@ -38,11 +36,15 @@ export class AppComponent {
       }
     });
 
-    this.router.events.subscribe(res => {
+    this.router.events.subscribe((res: RouterEvent) => {
       if(this.menuController.isOpen()) {
         this.menuController.close();
       }
+      this.menuController.enable(true);
     });
+
+
+
 
   }
 

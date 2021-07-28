@@ -7,6 +7,7 @@ import { auth } from 'firebase/app';
 import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/firestore';
 import { GooglePlus } from '@ionic-native/google-plus/ngx';
 import { AngularFireAuth } from '@angular/fire/auth';
+import { AppComponent } from '../app.component';
 
 @Injectable({
   providedIn: 'root'
