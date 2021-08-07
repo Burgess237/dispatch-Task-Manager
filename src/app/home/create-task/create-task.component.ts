@@ -6,7 +6,6 @@ import { ModalController, ToastController } from '@ionic/angular';
 import { AuthService } from 'src/app/services/auth.service';
 import { FirebaseService } from 'src/app/services/firebase.service';
 import { Task } from 'src/app/task';
-import { FileChooser } from '@ionic-native/file-chooser/ngx';
 import { catchError, takeUntil } from 'rxjs/operators';
 import { EMPTY, Observable, Subject } from 'rxjs';
 import { DomSanitizer } from '@angular/platform-browser';
@@ -35,7 +34,6 @@ export class CreateTaskComponent implements OnInit, OnDestroy {
     public modalController: ModalController,
     public firebaseService: FirebaseService,
     public auth: AuthService,
-    public fileChooser: FileChooser,
     public toastController: ToastController,
     private sanitizer: DomSanitizer) {
     this.currentDate = this.date.toISOString();
