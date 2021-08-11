@@ -53,5 +53,11 @@ export class AppComponent {
 
   }
 
+  newFact() {
+    this.http.get('https://uselessfacts.jsph.pl/random.json?language=en').subscribe(res => {
+      this.randomFact = res;
+    });
+  }
+
 
 }

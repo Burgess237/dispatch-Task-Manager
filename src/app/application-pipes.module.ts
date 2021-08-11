@@ -1,5 +1,6 @@
 import { FilterPipe } from './filter.pipe';
 import { NgModule } from '@angular/core';
+import { FactPipe } from './fact.pipe';
 
 
 @NgModule({
@@ -7,10 +8,12 @@ import { NgModule } from '@angular/core';
       // dep modules
     ],
     declarations: [
-      FilterPipe
+      FilterPipe,
+      FactPipe
     ],
     exports: [
-      FilterPipe
+      FilterPipe,
+      FactPipe
     ]
   })
   export class ApplicationPipesModule {}
