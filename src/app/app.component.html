@@ -3,7 +3,7 @@
     <!--  the side menu  -->
     <ion-menu contentId="main" type="reveal" menuId="main-menu">
       <ion-header translucent="true">
-        <ion-toolbar color="primary">
+        <ion-toolbar color="secondary">
           <ion-title>Menu</ion-title>
           
         </ion-toolbar>
@@ -33,12 +33,12 @@
               <ion-label>Map</ion-label>
           </ion-item>
         </ion-list>
-        <ion-card color="secondary" id="{{randomFact?.id}}">
+        <ion-card color="primary" id="{{randomFact?.id}}">
           <ion-card-header>
             <ion-card-title>Dan's Daily Facts</ion-card-title>
             <ion-card-subtitle>{{ randomFact?.text | fact }}</ion-card-subtitle>
           </ion-card-header>
-          <ion-button (click)="newFact()">
+          <ion-button (click)="newFact()" color="secondary">
             <ion-icon slot="start" name="add"></ion-icon>
             New Fact
           </ion-button>

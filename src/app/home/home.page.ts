@@ -6,10 +6,7 @@ import { FirebaseService } from '../services/firebase.service';
 import { CreateTaskComponent } from './create-task/create-task.component';
 import { Task } from '../task';
 import { UpdateTaskComponent } from './update-task/update-task.component';
-import { FirebaseStorage } from '@angular/fire';
 import { ViewTaskComponent } from './view-task/view-task.component';
-import { Observable, of } from 'rxjs';
-import * as firebase from 'firebase';
 import { Router } from '@angular/router';
 import { User } from '../services/user';
 
@@ -34,7 +31,7 @@ export class HomePage implements OnInit {
     public toast: ToastController,
     private firebaseAuth: AuthService,
     private router: Router
-     ) { }
+    ) { }
 
   ngOnInit() {
     // Fetch tasks from firebase

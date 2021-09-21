@@ -1,6 +1,6 @@
 {
-  "name": "dispach-todo-io5",
-  "version": "0.1.1",
+  "name": "disptach-todo-io5",
+  "version": "1.1.2",
   "author": "Daniel Burgess",
   "homepage": "https://jimbu.co.za/",
   "scripts": {
@@ -103,7 +103,7 @@
     "ts-node": "~8.3.0",
     "typescript": "~4.0.2"
   },
-  "description": "An Ionic project",
+  "description": "Task and Delivery management software",
   "cordova": {
     "plugins": {
       "cordova-plugin-whitelist": {},
