@@ -15,6 +15,25 @@ export class AccountPage implements OnInit {
     this.user = this.auth.userData;
   }
 
+  onClick(event){
+    const systemDark = window.matchMedia('(prefers-color-scheme: dark)');
+    systemDark.addListener(this.colorTest);
+    if(event.detail.checked){
+      document.body.setAttribute('data-theme', 'dark');
+    }
+    else{
+      document.body.setAttribute('data-theme', 'light');
+    }
+  }
+
+   colorTest(systemInitiatedDark) {
+    if (systemInitiatedDark.matches) {
+      document.body.setAttribute('data-theme', 'dark');
+    } else {
+      document.body.setAttribute('data-theme', 'light');
+    }
+  }
+
   ngOnInit() {
   }
 
